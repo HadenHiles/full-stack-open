@@ -43,9 +43,9 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 
 **Applications:** `part0/` (diagram files)
 
-- [ ] **[0.1: HTML](https://fullstackopen.com/en/part0/fundamentals_of_web_apps)** — Reading only
-- [ ] **[0.2: CSS](https://fullstackopen.com/en/part0/fundamentals_of_web_apps)** — Reading only
-- [ ] **[0.3: HTML forms](https://fullstackopen.com/en/part0/fundamentals_of_web_apps)** — Reading only
+- [x] **[0.1: HTML](https://fullstackopen.com/en/part0/fundamentals_of_web_apps)** — Reading only
+- [x] **[0.2: CSS](https://fullstackopen.com/en/part0/fundamentals_of_web_apps)** — Reading only
+- [x] **[0.3: HTML forms](https://fullstackopen.com/en/part0/fundamentals_of_web_apps)** — Reading only
 - [ ] **[0.4: New note diagram](https://fullstackopen.com/en/part0/fundamentals_of_web_apps)**
 - [ ] **[0.5: Single page app diagram](https://fullstackopen.com/en/part0/fundamentals_of_web_apps)**
 - [ ] **[0.6: New note in Single page app diagram](https://fullstackopen.com/en/part0/fundamentals_of_web_apps)**
