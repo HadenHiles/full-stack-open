@@ -1,6 +1,6 @@
-# Exercise 0.5 — Single Page App Sequence Diagram
+# Exercise 0.5: Single Page App Sequence Diagram
 
-This diagram shows what happens when a user navigates to the SPA version of the notes app at https://studies.cs.helsinki.fi/exampleapp/spa.
+What happens when a user navigates to https://studies.cs.helsinki.fi/exampleapp/spa.
 
 ```mermaid
 sequenceDiagram
@@ -22,12 +22,12 @@ sequenceDiagram
     server-->>browser: the JavaScript file
     deactivate server
 
-    Note right of browser: The browser starts executing spa.js,<br/>which fetches the notes data from the server
+    Note right of browser: spa.js runs and fetches data.json
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
     activate server
     server-->>browser: [{ "content": "...", "date": "..." }, ...]
     deactivate server
 
-    Note right of browser: The browser executes the callback function<br/>that renders the notes list using the DOM API
+    Note right of browser: Callback renders the notes list via DOM API
 ```
