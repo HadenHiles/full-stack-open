@@ -11,20 +11,20 @@ sequenceDiagram
     User->>Browser: Types a note and clicks "Save"
     Browser->>Server: POST /exampleapp/new_note (form data: note=<text>)
     Note right of Server: Server saves the new note<br/>and replies with a redirect
-    Server-->>Browser: Redirect → /exampleapp/notes
+    Server-->>Browser: 302 Redirect → /exampleapp/notes
 
     Browser->>Server: GET /exampleapp/notes
-    Server-->>Browser: HTML page
+    Server-->>Browser: 200 OK (HTML page)
 
     Browser->>Server: GET /exampleapp/main.css
-    Server-->>Browser: stylesheet
+    Server-->>Browser: 200 OK (stylesheet)
 
     Browser->>Server: GET /exampleapp/main.js
-    Server-->>Browser: JavaScript
+    Server-->>Browser: 200 OK (JavaScript)
 
     Note right of Browser: Browser runs main.js,<br/>which fires an XHR request<br/>for the latest notes data
     Browser->>Server: GET /exampleapp/data.json
-    Server-->>Browser: JSON array of all notes
+    Server-->>Browser: 200 OK (JSON array of all notes)
 
     Note right of Browser: Browser reads the JSON<br/>and re-renders the notes list,<br/>now including the new note
 ```
