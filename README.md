@@ -11,6 +11,7 @@ Parts 8–14 are separate extension courses and are listed separately below.
 Exercise checkboxes track my working progress but **do not replace** the official University of Helsinki [submission system](https://studies.cs.helsinki.fi/stats/courses/fullstackopen). Exercises for a part should not be formally submitted until I have completed every exercise from that part that I intend to submit.
 
 > **Legend**
+>
 > - `[ ]` not completed
 > - `[x]` completed
 > - `*` optional exercise (Parts 1–4, where applicable)
@@ -23,15 +24,15 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 <!-- progress-summary:start -->
 | Part | Topic | Completed | Total | Progress |
 | ---- | ----- | --------: | ----: | -------: |
-| 0 | Fundamentals of Web apps | 0 | 6 | 0% |
-| 1 | Introduction to React | 0 | 14 | 0% |
+| 0 | Fundamentals of Web apps | 6 | 6 | 100% |
+| 1 | Introduction to React | 14 | 14 | 100% |
 | 2 | Communicating with server | 0 | 20 | 0% |
 | 3 | Programming a server with NodeJS and Express | 0 | 22 | 0% |
 | 4 | Testing Express servers, user administration | 0 | 23 | 0% |
 | 5 | Testing React apps | 0 | 31 | 0% |
 | 6 | Advanced state management | 0 | 22 | 0% |
 | 7 | React router, custom hooks, styling app with CSS | 0 | 20 | 0% |
-| **Total** | | **0** | **158** | **0%** |
+| **Total** | | **20** | **158** | **13%** |
 <!-- progress-summary:end -->
 
 ---
@@ -39,7 +40,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 ## Detailed Checklists
 
 <details>
-<summary><strong>Part 0 — Fundamentals of Web apps</strong> — 0/6</summary>
+<summary><strong>Part 0 — Fundamentals of Web apps</strong> — 6/6</summary>
 
 **Applications:** `part0/` (diagram files)
 
@@ -53,24 +54,24 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 </details>
 
 <details>
-<summary><strong>Part 1 — Introduction to React</strong> — 0/14</summary>
+<summary><strong>Part 1 — Introduction to React</strong> — 14/14</summary>
 
 **Applications:** `part1/courseinfo/`, `part1/unicafe/`, `part1/anecdotes/`
 
-- [ ] **[1.1: Course Information, step 1](https://fullstackopen.com/en/part1/introduction_to_react)**
-- [ ] **[1.2: Course Information, step 2](https://fullstackopen.com/en/part1/introduction_to_react)**
-- [ ] **[1.3: Course Information step 3](https://fullstackopen.com/en/part1/introduction_to_react)**
-- [ ] **[1.4: Course Information step 4](https://fullstackopen.com/en/part1/introduction_to_react)**
-- [ ] **[1.5: Course Information step 5](https://fullstackopen.com/en/part1/introduction_to_react)**
-- [ ] **[1.6: unicafe step 1](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)**
-- [ ] **[1.7: unicafe step 2](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)**
-- [ ] **[1.8: unicafe step 3](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)**
-- [ ] **[1.9: unicafe step 4](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)**
-- [ ] **[1.10: unicafe step 5](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)**
-- [ ] **[1.11\*: unicafe step 6](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)** — Optional
-- [ ] **[1.12\*: anecdotes step 1](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)** — Optional
-- [ ] **[1.13\*: anecdotes step 2](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)** — Optional
-- [ ] **[1.14\*: anecdotes step 3](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)** — Optional
+- [x] **[1.1: Course Information, step 1](https://fullstackopen.com/en/part1/introduction_to_react)**
+- [x] **[1.2: Course Information, step 2](https://fullstackopen.com/en/part1/introduction_to_react)**
+- [x] **[1.3: Course Information step 3](https://fullstackopen.com/en/part1/introduction_to_react)**
+- [x] **[1.4: Course Information step 4](https://fullstackopen.com/en/part1/introduction_to_react)**
+- [x] **[1.5: Course Information step 5](https://fullstackopen.com/en/part1/introduction_to_react)**
+- [x] **[1.6: unicafe step 1](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)**
+- [x] **[1.7: unicafe step 2](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)**
+- [x] **[1.8: unicafe step 3](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)**
+- [x] **[1.9: unicafe step 4](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)**
+- [x] **[1.10: unicafe step 5](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)**
+- [x] **[1.11\*: unicafe step 6](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)** — Optional
+- [x] **[1.12\*: anecdotes step 1](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)** — Optional
+- [x] **[1.13\*: anecdotes step 2](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)** — Optional
+- [x] **[1.14\*: anecdotes step 3](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps)** — Optional
 
 </details>
 
@@ -238,7 +239,6 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 <summary><strong>Part 7 — React router, custom hooks, styling app with CSS</strong> — 0/20</summary>
 
 **Applications:** `part7/routed-anecdotes/`, extends `part4/bloglist-backend/` + `part5/bloglist-frontend/`
-
 
 - [ ] **[7.1: useField hook](https://fullstackopen.com/en/part7/more_about_react_hooks)**
 - [ ] **[7.2: useField with reset](https://fullstackopen.com/en/part7/more_about_react_hooks)**
