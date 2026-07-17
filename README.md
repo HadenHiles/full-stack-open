@@ -26,13 +26,13 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 | ---- | ----- | --------: | ----: | -------: |
 | 0 | Fundamentals of Web apps | 6 | 6 | 100% |
 | 1 | Introduction to React | 14 | 14 | 100% |
-| 2 | Communicating with server | 0 | 20 | 0% |
+| 2 | Communicating with server | 5 | 20 | 25% |
 | 3 | Programming a server with NodeJS and Express | 0 | 22 | 0% |
 | 4 | Testing Express servers, user administration | 0 | 23 | 0% |
 | 5 | Testing React apps | 0 | 31 | 0% |
 | 6 | Advanced state management | 0 | 22 | 0% |
 | 7 | React router, custom hooks, styling app with CSS | 0 | 20 | 0% |
-| **Total** | | **20** | **158** | **13%** |
+| **Total** | | **25** | **158** | **16%** |
 <!-- progress-summary:end -->
 
 ---
@@ -76,15 +76,15 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 </details>
 
 <details>
-<summary><strong>Part 2 — Communicating with server</strong> — 0/20</summary>
+<summary><strong>Part 2 — Communicating with server</strong> — 5/20</summary>
 
 **Applications:** `part2/courseinfo/`, `part2/phonebook/`, `part2/countries/`
 
-- [ ] **[2.1: Course information step 6](https://fullstackopen.com/en/part2/rendering_a_collection_modules)**
-- [ ] **[2.2: Course information step 7](https://fullstackopen.com/en/part2/rendering_a_collection_modules)**
+- [x] **[2.1: Course information step 6](https://fullstackopen.com/en/part2/rendering_a_collection_modules)**
+- [x] **[2.2: Course information step 7](https://fullstackopen.com/en/part2/rendering_a_collection_modules)**
 - [ ] **[2.3\*: Course information step 8](https://fullstackopen.com/en/part2/rendering_a_collection_modules)** — Optional
-- [ ] **[2.4: Course information step 9](https://fullstackopen.com/en/part2/rendering_a_collection_modules)**
-- [ ] **[2.5: Separate module step 10](https://fullstackopen.com/en/part2/rendering_a_collection_modules)**
+- [x] **[2.4: Course information step 9](https://fullstackopen.com/en/part2/rendering_a_collection_modules)**
+- [x] **[2.5: Separate module step 10](https://fullstackopen.com/en/part2/rendering_a_collection_modules)**
 - [ ] **[2.6: The Phonebook Step 1](https://fullstackopen.com/en/part2/forms)**
 - [ ] **[2.7: The Phonebook Step 2](https://fullstackopen.com/en/part2/forms)**
 - [ ] **[2.8: The Phonebook Step 3](https://fullstackopen.com/en/part2/forms)**
