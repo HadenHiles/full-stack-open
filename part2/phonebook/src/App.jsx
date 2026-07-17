@@ -10,6 +10,12 @@ const App = () => {
     event.preventDefault()
     if (newName.trim() === '') return
 
+    const exists = persons.some(p => p.name === newName)
+    if (exists) {
+      alert(`${newName} is already added to phonebook`)
+      return
+    }
+
     const person = { name: newName, id: persons.length + 1 }
     setPersons(persons.concat(person))
     setNewName('')
