@@ -38,6 +38,10 @@ const App = () => {
           setNewNumber('')
           showNotification(`Updated ${returnedPerson.name}`)
         })
+        .catch(() => {
+          showNotification(`Information of ${existing.name} has already been removed from server`, 'error')
+          setPersons(persons.filter(p => p.id !== existing.id))
+        })
       return
     }
 
