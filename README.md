@@ -26,13 +26,13 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 | ---- | ----- | --------: | ----: | -------: |
 | 0 | Fundamentals of Web apps | 6 | 6 | 100% |
 | 1 | Introduction to React | 14 | 14 | 100% |
-| 2 | Communicating with server | 11 | 20 | 55% |
+| 2 | Communicating with server | 15 | 20 | 75% |
 | 3 | Programming a server with NodeJS and Express | 0 | 22 | 0% |
 | 4 | Testing Express servers, user administration | 0 | 23 | 0% |
 | 5 | Testing React apps | 0 | 31 | 0% |
 | 6 | Advanced state management | 0 | 22 | 0% |
 | 7 | React router, custom hooks, styling app with CSS | 0 | 20 | 0% |
-| **Total** | | **31** | **158** | **20%** |
+| **Total** | | **35** | **158** | **22%** |
 <!-- progress-summary:end -->
 
 ---
@@ -76,7 +76,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 </details>
 
 <details>
-<summary><strong>Part 2 — Communicating with server</strong> — 11/20</summary>
+<summary><strong>Part 2 — Communicating with server</strong> — 15/20</summary>
 
 **Applications:** `part2/courseinfo/`, `part2/phonebook/`, `part2/countries/`
 
@@ -91,9 +91,9 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 - [ ] **[2.9\*: The Phonebook Step 4](https://fullstackopen.com/en/part2/forms)** — Optional
 - [x] **[2.10: The Phonebook Step 5](https://fullstackopen.com/en/part2/forms)**
 - [x] **[2.11: The Phonebook Step 6](https://fullstackopen.com/en/part2/getting_data_from_server)**
-- [ ] **[2.12: The Phonebook step 7](https://fullstackopen.com/en/part2/altering_data_in_server)**
-- [ ] **[2.13: The Phonebook step 8](https://fullstackopen.com/en/part2/altering_data_in_server)**
-- [ ] **[2.14: The Phonebook step 9](https://fullstackopen.com/en/part2/altering_data_in_server)**
+- [x] **[2.12: The Phonebook step 7](https://fullstackopen.com/en/part2/altering_data_in_server)**
+- [x] **[2.13: The Phonebook step 8](https://fullstackopen.com/en/part2/altering_data_in_server)**
+- [x] **[2.14: The Phonebook step 9](https://fullstackopen.com/en/part2/altering_data_in_server)**
 - [ ] **[2.15\*: The Phonebook step 10](https://fullstackopen.com/en/part2/altering_data_in_server)** — Optional
 - [ ] **[2.16: Phonebook step 11](https://fullstackopen.com/en/part2/altering_data_in_server)**
 - [ ] **[2.17\*: Phonebook step 12](https://fullstackopen.com/en/part2/altering_data_in_server)** — Optional
