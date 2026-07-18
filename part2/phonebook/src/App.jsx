@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
+import Notification from './components/Notification'
 import personService from './services/persons'
 
 const App = () => {
@@ -9,10 +10,18 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
+  const [notification, setNotification] = useState(null)
+  const [notificationType, setNotificationType] = useState('success')
 
   useEffect(() => {
     personService.getAll().then(initialPersons => setPersons(initialPersons))
   }, [])
+
+  const showNotification = (message, type = 'success') => {
+    setNotification(message)
+    setNotificationType(type)
+    setTimeout(() => setNotification(null), 5000)
+  }
 
   const addPerson = (event) => {
     event.preventDefault()
@@ -27,6 +36,7 @@ const App = () => {
           setPersons(persons.map(p => p.id !== existing.id ? p : returnedPerson))
           setNewName('')
           setNewNumber('')
+          showNotification(`Updated ${returnedPerson.name}`)
         })
       return
     }
@@ -37,6 +47,7 @@ const App = () => {
         setPersons(persons.concat(returnedPerson))
         setNewName('')
         setNewNumber('')
+        showNotification(`Added ${returnedPerson.name}`)
       })
   }
 
@@ -54,6 +65,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={notification} type={notificationType} />
       <Filter value={filter} onChange={e => setFilter(e.target.value)} />
       <h3>Add a new</h3>
       <PersonForm
