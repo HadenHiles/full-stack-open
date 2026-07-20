@@ -26,13 +26,13 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 | ---- | ----- | --------: | ----: | -------: |
 | 0 | Fundamentals of Web apps | 6 | 6 | 100% |
 | 1 | Introduction to React | 14 | 14 | 100% |
-| 2 | Communicating with server | 15 | 20 | 75% |
+| 2 | Communicating with server | 20 | 20 | 100% |
 | 3 | Programming a server with NodeJS and Express | 0 | 22 | 0% |
 | 4 | Testing Express servers, user administration | 0 | 23 | 0% |
 | 5 | Testing React apps | 0 | 31 | 0% |
 | 6 | Advanced state management | 0 | 22 | 0% |
 | 7 | React router, custom hooks, styling app with CSS | 0 | 20 | 0% |
-| **Total** | | **35** | **158** | **22%** |
+| **Total** | | **40** | **158** | **25%** |
 <!-- progress-summary:end -->
 
 ---
@@ -76,7 +76,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 </details>
 
 <details>
-<summary><strong>Part 2 — Communicating with server</strong> — 15/20</summary>
+<summary><strong>Part 2 — Communicating with server</strong> — 20/20</summary>
 
 **Applications:** `part2/courseinfo/`, `part2/phonebook/`, `part2/countries/`
 
@@ -95,7 +95,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 - [x] **[2.13: The Phonebook step 8](https://fullstackopen.com/en/part2/altering_data_in_server)**
 - [x] **[2.14: The Phonebook step 9](https://fullstackopen.com/en/part2/altering_data_in_server)**
 - [ ] **[2.15\*: The Phonebook step 10](https://fullstackopen.com/en/part2/altering_data_in_server)** — Optional
-- [ ] **[2.16: Phonebook step 11](https://fullstackopen.com/en/part2/altering_data_in_server)**
+- [x] **[2.16: Phonebook step 11](https://fullstackopen.com/en/part2/altering_data_in_server)**
 - [ ] **[2.17\*: Phonebook step 12](https://fullstackopen.com/en/part2/altering_data_in_server)** — Optional
 - [ ] **[2.18\*: Data for countries, step 1](https://fullstackopen.com/en/part2/adding_styles_to_react_app)** — Optional
 - [ ] **[2.19\*: Data for countries, step 2](https://fullstackopen.com/en/part2/adding_styles_to_react_app)** — Optional
