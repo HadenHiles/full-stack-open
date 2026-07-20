@@ -39,7 +39,10 @@ const App = () => {
     return (
       <ul>
         {matches.map(c => (
-          <li key={c.name.common}>{c.name.common}</li>
+          <li key={c.name.common}>
+            {c.name.common}
+            <button onClick={() => setSearch(c.name.common)}>show</button>
+          </li>
         ))}
       </ul>
     )
