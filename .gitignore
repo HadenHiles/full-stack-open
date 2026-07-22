@@ -3,6 +3,8 @@ node_modules/
 
 # Build output
 dist/
+!part3/phonebook-backend/dist/
+!part3/phonebook-backend/dist/**
 build/
 .cache/
 
