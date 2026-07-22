@@ -30,11 +30,11 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 | 1 | Introduction to React | 14 | 14 | 100% |
 | 2 | Communicating with server | 20 | 20 | 100% |
 | 3 | Programming a server with NodeJS and Express | 22 | 22 | 100% |
-| 4 | Testing Express servers, user administration | 1 | 23 | 4% |
+| 4 | Testing Express servers, user administration | 2 | 23 | 9% |
 | 5 | Testing React apps | 0 | 31 | 0% |
 | 6 | Advanced state management | 0 | 22 | 0% |
 | 7 | React router, custom hooks, styling app with CSS | 0 | 20 | 0% |
-| **Total** | | **63** | **158** | **40%** |
+| **Total** | | **64** | **158** | **41%** |
 <!-- progress-summary:end -->
 
 ---
@@ -136,12 +136,12 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 </details>
 
 <details>
-<summary><strong>Part 4 — Testing Express servers, user administration</strong> — 1/23</summary>
+<summary><strong>Part 4 — Testing Express servers, user administration</strong> — 2/23</summary>
 
 **Applications:** `part4/bloglist-backend/`
 
 - [x] **[4.1 Blog List, step 1](https://fullstackopen.com/en/part4/structure_of_backend_application_introduction_to_testing)**
-- [ ] **[4.2 Blog List, step 2](https://fullstackopen.com/en/part4/structure_of_backend_application_introduction_to_testing)**
+- [x] **[4.2 Blog List, step 2](https://fullstackopen.com/en/part4/structure_of_backend_application_introduction_to_testing)**
 - [ ] **[4.3: Helper Functions and Unit Tests, step 1](https://fullstackopen.com/en/part4/structure_of_backend_application_introduction_to_testing)**
 - [ ] **[4.4: Helper Functions and Unit Tests, step 2](https://fullstackopen.com/en/part4/structure_of_backend_application_introduction_to_testing)**
 - [ ] **[4.5\*: Helper Functions and Unit Tests, step 3](https://fullstackopen.com/en/part4/structure_of_backend_application_introduction_to_testing)** — Optional
