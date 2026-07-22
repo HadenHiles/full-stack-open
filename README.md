@@ -2,6 +2,8 @@
 
 This repository contains my Full Stack Open exercise submissions.
 
+**Live application:** [Phonebook](https://full-stack-open-sg72.onrender.com)
+
 **Curriculum snapshot date:** 2026-07-15
 **Source:** Official English course material — [fullstackopen.com/en](https://fullstackopen.com/en/)
 
@@ -27,12 +29,12 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 | 0 | Fundamentals of Web apps | 6 | 6 | 100% |
 | 1 | Introduction to React | 14 | 14 | 100% |
 | 2 | Communicating with server | 20 | 20 | 100% |
-| 3 | Programming a server with NodeJS and Express | 8 | 22 | 36% |
+| 3 | Programming a server with NodeJS and Express | 11 | 22 | 50% |
 | 4 | Testing Express servers, user administration | 0 | 23 | 0% |
 | 5 | Testing React apps | 0 | 31 | 0% |
 | 6 | Advanced state management | 0 | 22 | 0% |
 | 7 | React router, custom hooks, styling app with CSS | 0 | 20 | 0% |
-| **Total** | | **48** | **158** | **30%** |
+| **Total** | | **51** | **158** | **32%** |
 <!-- progress-summary:end -->
 
 ---
@@ -104,7 +106,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 </details>
 
 <details>
-<summary><strong>Part 3 — Programming a server with NodeJS and Express</strong> — 10/22</summary>
+<summary><strong>Part 3 — Programming a server with NodeJS and Express</strong> — 11/22</summary>
 
 **Applications:** `part3/phonebook-backend/`
 
@@ -117,7 +119,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 - [x] **[3.7: Phonebook backend step 7](https://fullstackopen.com/en/part3/node_js_and_express)**
 - [x] **[3.8\*: Phonebook backend step 8](https://fullstackopen.com/en/part3/node_js_and_express)** — Optional
 - [x] **[3.9 Phonebook backend step 9](https://fullstackopen.com/en/part3/deploying_app_to_internet)**
-- [ ] **[3.10 Phonebook backend step 10](https://fullstackopen.com/en/part3/deploying_app_to_internet)**
+- [x] **[3.10 Phonebook backend step 10](https://fullstackopen.com/en/part3/deploying_app_to_internet)**
 - [x] **[3.11 Full Stack Phonebook](https://fullstackopen.com/en/part3/deploying_app_to_internet)**
 - [ ] **[3.12: Command-line database](https://fullstackopen.com/en/part3/saving_data_to_mongodb)**
 - [ ] **[3.13: Phonebook database, step 1](https://fullstackopen.com/en/part3/saving_data_to_mongodb)**
