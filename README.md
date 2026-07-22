@@ -29,12 +29,12 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 | 0 | Fundamentals of Web apps | 6 | 6 | 100% |
 | 1 | Introduction to React | 14 | 14 | 100% |
 | 2 | Communicating with server | 20 | 20 | 100% |
-| 3 | Programming a server with NodeJS and Express | 21 | 22 | 95% |
+| 3 | Programming a server with NodeJS and Express | 22 | 22 | 100% |
 | 4 | Testing Express servers, user administration | 0 | 23 | 0% |
 | 5 | Testing React apps | 0 | 31 | 0% |
 | 6 | Advanced state management | 0 | 22 | 0% |
 | 7 | React router, custom hooks, styling app with CSS | 0 | 20 | 0% |
-| **Total** | | **61** | **158** | **39%** |
+| **Total** | | **62** | **158** | **39%** |
 <!-- progress-summary:end -->
 
 ---
@@ -106,7 +106,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 </details>
 
 <details>
-<summary><strong>Part 3 — Programming a server with NodeJS and Express</strong> — 21/22</summary>
+<summary><strong>Part 3 — Programming a server with NodeJS and Express</strong> — 22/22</summary>
 
 **Applications:** `part3/phonebook-backend/`
 
@@ -130,7 +130,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 - [x] **[3.18\*: Phonebook database step 6](https://fullstackopen.com/en/part3/saving_data_to_mongodb)** — Optional
 - [x] **[3.19\*: Phonebook database, step 7](https://fullstackopen.com/en/part3/validation_and_eslint)** — Optional
 - [x] **[3.20\*: Phonebook database, step 8](https://fullstackopen.com/en/part3/validation_and_eslint)** — Optional
-- [ ] **[3.21 Deploying the database backend to production](https://fullstackopen.com/en/part3/validation_and_eslint)**
+- [x] **[3.21 Deploying the database backend to production](https://fullstackopen.com/en/part3/validation_and_eslint)**
 - [x] **[3.22: Lint configuration](https://fullstackopen.com/en/part3/validation_and_eslint)**
 
 </details>
