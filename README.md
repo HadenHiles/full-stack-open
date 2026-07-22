@@ -84,24 +84,24 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 
 - [x] **[2.1: Course information step 6](https://fullstackopen.com/en/part2/rendering_a_collection_modules)**
 - [x] **[2.2: Course information step 7](https://fullstackopen.com/en/part2/rendering_a_collection_modules)**
-- [ ] **[2.3\*: Course information step 8](https://fullstackopen.com/en/part2/rendering_a_collection_modules)** — Optional
+- [x] **[2.3\*: Course information step 8](https://fullstackopen.com/en/part2/rendering_a_collection_modules)** — Optional
 - [x] **[2.4: Course information step 9](https://fullstackopen.com/en/part2/rendering_a_collection_modules)**
 - [x] **[2.5: Separate module step 10](https://fullstackopen.com/en/part2/rendering_a_collection_modules)**
 - [x] **[2.6: The Phonebook Step 1](https://fullstackopen.com/en/part2/forms)**
 - [x] **[2.7: The Phonebook Step 2](https://fullstackopen.com/en/part2/forms)**
 - [x] **[2.8: The Phonebook Step 3](https://fullstackopen.com/en/part2/forms)**
-- [ ] **[2.9\*: The Phonebook Step 4](https://fullstackopen.com/en/part2/forms)** — Optional
+- [x] **[2.9\*: The Phonebook Step 4](https://fullstackopen.com/en/part2/forms)** — Optional
 - [x] **[2.10: The Phonebook Step 5](https://fullstackopen.com/en/part2/forms)**
 - [x] **[2.11: The Phonebook Step 6](https://fullstackopen.com/en/part2/getting_data_from_server)**
 - [x] **[2.12: The Phonebook step 7](https://fullstackopen.com/en/part2/altering_data_in_server)**
 - [x] **[2.13: The Phonebook step 8](https://fullstackopen.com/en/part2/altering_data_in_server)**
 - [x] **[2.14: The Phonebook step 9](https://fullstackopen.com/en/part2/altering_data_in_server)**
-- [ ] **[2.15\*: The Phonebook step 10](https://fullstackopen.com/en/part2/altering_data_in_server)** — Optional
+- [x] **[2.15\*: The Phonebook step 10](https://fullstackopen.com/en/part2/altering_data_in_server)** — Optional
 - [x] **[2.16: Phonebook step 11](https://fullstackopen.com/en/part2/altering_data_in_server)**
-- [ ] **[2.17\*: Phonebook step 12](https://fullstackopen.com/en/part2/altering_data_in_server)** — Optional
-- [ ] **[2.18\*: Data for countries, step 1](https://fullstackopen.com/en/part2/adding_styles_to_react_app)** — Optional
-- [ ] **[2.19\*: Data for countries, step 2](https://fullstackopen.com/en/part2/adding_styles_to_react_app)** — Optional
-- [ ] **[2.20\*: Data for countries, step 3](https://fullstackopen.com/en/part2/adding_styles_to_react_app)** — Optional
+- [x] **[2.17\*: Phonebook step 12](https://fullstackopen.com/en/part2/altering_data_in_server)** — Optional
+- [x] **[2.18\*: Data for countries, step 1](https://fullstackopen.com/en/part2/adding_styles_to_react_app)** — Optional
+- [x] **[2.19\*: Data for countries, step 2](https://fullstackopen.com/en/part2/adding_styles_to_react_app)** — Optional
+- [x] **[2.20\*: Data for countries, step 3](https://fullstackopen.com/en/part2/adding_styles_to_react_app)** — Optional
 
 </details>
 
