@@ -15,6 +15,7 @@ coverage/
 .env
 .env.*
 !.env.example
+part3/atlas-credentials.env
 
 # Logs
 *.log

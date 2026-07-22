@@ -1,68 +1,117 @@
+const path = require('path')
+const dotenv = require('dotenv')
+
+dotenv.config({ path: path.join(__dirname, '../atlas-credentials.env'), quiet: true })
+dotenv.config({ quiet: true })
+
 const express = require('express')
 const morgan = require('morgan')
+const Person = require('./models/person')
+
 const app = express()
 
 app.use(express.json())
 app.use(express.static('dist'))
 
-morgan.token('body', (req) => JSON.stringify(req.body))
+morgan.token('body', request => JSON.stringify(request.body))
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
-let persons = [
-    { id: '1', name: 'Arto Hellas', number: '040-123456' },
-    { id: '2', name: 'Ada Lovelace', number: '39-44-5323523' },
-    { id: '3', name: 'Dan Abramov', number: '12-43-234345' },
-    { id: '4', name: 'Mary Poppendieck', number: '39-23-6423122' },
-]
-
-app.get('/info', (request, response) => {
-    const now = new Date()
+app.get('/info', async (_request, response, next) => {
+  try {
+    const personCount = await Person.countDocuments({})
     response.send(
-        `<p>Phonebook has info for ${persons.length} people</p><p>${now}</p>`
+      `<p>Phonebook has info for ${personCount} people</p><p>${new Date()}</p>`
     )
+  } catch (error) {
+    next(error)
+  }
 })
 
-app.get('/api/persons', (request, response) => {
+app.get('/api/persons', async (_request, response, next) => {
+  try {
+    const persons = await Person.find({})
     response.json(persons)
+  } catch (error) {
+    next(error)
+  }
 })
 
-app.get('/api/persons/:id', (request, response) => {
-    const id = request.params.id
-    const person = persons.find(p => p.id === id)
-    if (person) {
-        response.json(person)
-    } else {
-        response.status(404).end()
+app.get('/api/persons/:id', async (request, response, next) => {
+  try {
+    const person = await Person.findById(request.params.id)
+    if (!person) {
+      return response.status(404).end()
     }
-})
 
-app.delete('/api/persons/:id', (request, response) => {
-    const id = request.params.id
-    persons = persons.filter(p => p.id !== id)
-    response.status(204).end()
-})
-
-app.post('/api/persons', (request, response) => {
-    const body = request.body
-    if (!body.name) {
-        return response.status(400).json({ error: 'name missing' })
-    }
-    if (!body.number) {
-        return response.status(400).json({ error: 'number missing' })
-    }
-    if (persons.find(p => p.name === body.name)) {
-        return response.status(400).json({ error: 'name must be unique' })
-    }
-    const person = {
-        id: String(Math.floor(Math.random() * 1000000)),
-        name: body.name,
-        number: body.number,
-    }
-    persons = persons.concat(person)
     response.json(person)
+  } catch (error) {
+    next(error)
+  }
 })
+
+app.delete('/api/persons/:id', async (request, response, next) => {
+  try {
+    await Person.findByIdAndDelete(request.params.id)
+    response.status(204).end()
+  } catch (error) {
+    next(error)
+  }
+})
+
+app.post('/api/persons', async (request, response, next) => {
+  try {
+    const person = new Person({
+      name: request.body.name,
+      number: request.body.number,
+    })
+    const savedPerson = await person.save()
+    response.status(201).json(savedPerson)
+  } catch (error) {
+    next(error)
+  }
+})
+
+app.put('/api/persons/:id', async (request, response, next) => {
+  try {
+    const person = await Person.findByIdAndUpdate(
+      request.params.id,
+      { name: request.body.name, number: request.body.number },
+      { new: true, runValidators: true, context: 'query' }
+    )
+    if (!person) {
+      return response.status(404).end()
+    }
+
+    response.json(person)
+  } catch (error) {
+    next(error)
+  }
+})
+
+const unknownEndpoint = (_request, response) => {
+  response.status(404).send({ error: 'unknown endpoint' })
+}
+
+const errorHandler = (error, _request, response, next) => {
+  console.error(error.message)
+
+  if (error.name === 'CastError') {
+    return response.status(400).send({ error: 'malformatted id' })
+  }
+  if (error.name === 'ValidationError') {
+    return response.status(400).json({ error: error.message })
+  }
+  if (error.code === 11000) {
+    return response.status(400).json({ error: 'name must be unique' })
+  }
+
+  next(error)
+}
+
+app.use(unknownEndpoint)
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
+  console.log(`Server running on port ${PORT}`)
 })
