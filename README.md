@@ -29,12 +29,12 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 | 0 | Fundamentals of Web apps | 6 | 6 | 100% |
 | 1 | Introduction to React | 14 | 14 | 100% |
 | 2 | Communicating with server | 20 | 20 | 100% |
-| 3 | Programming a server with NodeJS and Express | 11 | 22 | 50% |
+| 3 | Programming a server with NodeJS and Express | 21 | 22 | 95% |
 | 4 | Testing Express servers, user administration | 0 | 23 | 0% |
 | 5 | Testing React apps | 0 | 31 | 0% |
 | 6 | Advanced state management | 0 | 22 | 0% |
 | 7 | React router, custom hooks, styling app with CSS | 0 | 20 | 0% |
-| **Total** | | **51** | **158** | **32%** |
+| **Total** | | **61** | **158** | **39%** |
 <!-- progress-summary:end -->
 
 ---
@@ -106,7 +106,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 </details>
 
 <details>
-<summary><strong>Part 3 — Programming a server with NodeJS and Express</strong> — 11/22</summary>
+<summary><strong>Part 3 — Programming a server with NodeJS and Express</strong> — 21/22</summary>
 
 **Applications:** `part3/phonebook-backend/`
 
@@ -121,17 +121,17 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 - [x] **[3.9 Phonebook backend step 9](https://fullstackopen.com/en/part3/deploying_app_to_internet)**
 - [x] **[3.10 Phonebook backend step 10](https://fullstackopen.com/en/part3/deploying_app_to_internet)**
 - [x] **[3.11 Full Stack Phonebook](https://fullstackopen.com/en/part3/deploying_app_to_internet)**
-- [ ] **[3.12: Command-line database](https://fullstackopen.com/en/part3/saving_data_to_mongodb)**
-- [ ] **[3.13: Phonebook database, step 1](https://fullstackopen.com/en/part3/saving_data_to_mongodb)**
-- [ ] **[3.14: Phonebook database, step 2](https://fullstackopen.com/en/part3/saving_data_to_mongodb)**
-- [ ] **[3.15: Phonebook database, step 3](https://fullstackopen.com/en/part3/saving_data_to_mongodb)**
-- [ ] **[3.16: Phonebook database, step 4](https://fullstackopen.com/en/part3/saving_data_to_mongodb)**
-- [ ] **[3.17\*: Phonebook database, step 5](https://fullstackopen.com/en/part3/saving_data_to_mongodb)** — Optional
-- [ ] **[3.18\*: Phonebook database step 6](https://fullstackopen.com/en/part3/saving_data_to_mongodb)** — Optional
-- [ ] **[3.19\*: Phonebook database, step 7](https://fullstackopen.com/en/part3/validation_and_eslint)** — Optional
-- [ ] **[3.20\*: Phonebook database, step 8](https://fullstackopen.com/en/part3/validation_and_eslint)** — Optional
+- [x] **[3.12: Command-line database](https://fullstackopen.com/en/part3/saving_data_to_mongodb)**
+- [x] **[3.13: Phonebook database, step 1](https://fullstackopen.com/en/part3/saving_data_to_mongodb)**
+- [x] **[3.14: Phonebook database, step 2](https://fullstackopen.com/en/part3/saving_data_to_mongodb)**
+- [x] **[3.15: Phonebook database, step 3](https://fullstackopen.com/en/part3/saving_data_to_mongodb)**
+- [x] **[3.16: Phonebook database, step 4](https://fullstackopen.com/en/part3/saving_data_to_mongodb)**
+- [x] **[3.17\*: Phonebook database, step 5](https://fullstackopen.com/en/part3/saving_data_to_mongodb)** — Optional
+- [x] **[3.18\*: Phonebook database step 6](https://fullstackopen.com/en/part3/saving_data_to_mongodb)** — Optional
+- [x] **[3.19\*: Phonebook database, step 7](https://fullstackopen.com/en/part3/validation_and_eslint)** — Optional
+- [x] **[3.20\*: Phonebook database, step 8](https://fullstackopen.com/en/part3/validation_and_eslint)** — Optional
 - [ ] **[3.21 Deploying the database backend to production](https://fullstackopen.com/en/part3/validation_and_eslint)**
-- [ ] **[3.22: Lint configuration](https://fullstackopen.com/en/part3/validation_and_eslint)**
+- [x] **[3.22: Lint configuration](https://fullstackopen.com/en/part3/validation_and_eslint)**
 
 </details>
 
