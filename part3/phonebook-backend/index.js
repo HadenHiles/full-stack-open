@@ -1,7 +1,7 @@
 const path = require('path')
 const dotenv = require('dotenv')
 
-dotenv.config({ path: path.join(__dirname, '../atlas-credentials.env'), quiet: true })
+dotenv.config({ path: path.join(__dirname, '../../atlas-credentials.env'), quiet: true })
 dotenv.config({ quiet: true })
 
 const express = require('express')
@@ -13,99 +13,118 @@ const app = express()
 app.use(express.json())
 app.use(express.static('dist'))
 
-morgan.token('body', request => JSON.stringify(request.body))
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
-
-app.get('/info', async (_request, response, next) => {
-  try {
-    const personCount = await Person.countDocuments({})
-    response.send(
-      `<p>Phonebook has info for ${personCount} people</p><p>${new Date()}</p>`
-    )
-  } catch (error) {
-    next(error)
-  }
-})
-
-app.get('/api/persons', async (_request, response, next) => {
-  try {
-    const persons = await Person.find({})
-    response.json(persons)
-  } catch (error) {
-    next(error)
-  }
-})
-
-app.get('/api/persons/:id', async (request, response, next) => {
-  try {
-    const person = await Person.findById(request.params.id)
-    if (!person) {
-      return response.status(404).end()
-    }
-
-    response.json(person)
-  } catch (error) {
-    next(error)
-  }
-})
-
-app.delete('/api/persons/:id', async (request, response, next) => {
-  try {
-    await Person.findByIdAndDelete(request.params.id)
-    response.status(204).end()
-  } catch (error) {
-    next(error)
-  }
-})
-
-app.post('/api/persons', async (request, response, next) => {
-  try {
-    const person = new Person({
-      name: request.body.name,
-      number: request.body.number,
-    })
-    const savedPerson = await person.save()
-    response.status(201).json(savedPerson)
-  } catch (error) {
-    next(error)
-  }
-})
-
-app.put('/api/persons/:id', async (request, response, next) => {
-  try {
-    const person = await Person.findByIdAndUpdate(
-      request.params.id,
-      { name: request.body.name, number: request.body.number },
-      { new: true, runValidators: true, context: 'query' }
-    )
-    if (!person) {
-      return response.status(404).end()
-    }
-
-    response.json(person)
-  } catch (error) {
-    next(error)
-  }
-})
-
-const unknownEndpoint = (_request, response) => {
-  response.status(404).send({ error: 'unknown endpoint' })
+const logFormat = (tokens, req, res) => {
+	return [
+		tokens.method(req, res),
+		tokens.url(req, res),
+		tokens.status(req, res),
+		tokens.res(req, res, 'content-length'),
+		'-',
+		tokens['response-time'](req, res),
+		'ms',
+		JSON.stringify(req.body),
+	].join(' ')
 }
 
-const errorHandler = (error, _request, response, next) => {
-  console.error(error.message)
+// log the body too so i can see what's being sent
+app.use(morgan(logFormat))
 
-  if (error.name === 'CastError') {
-    return response.status(400).send({ error: 'malformatted id' })
-  }
-  if (error.name === 'ValidationError') {
-    return response.status(400).json({ error: error.message })
-  }
-  if (error.code === 11000) {
-    return response.status(400).json({ error: 'name must be unique' })
-  }
+app.get('/info', async (req, res, next) => {
+	try {
+		const count = await Person.countDocuments({})
+		const currentTime = new Date().toLocaleString()
+		const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
 
-  next(error)
+		res.send(
+			`
+			<div><p>Phonebook has info for ${count} people</p></div>
+			<div><p>${currentTime} (${timezone})</p></div>
+			`
+		)
+	} catch (error) {
+		next(error)
+	}
+})
+
+app.get('/api/persons', async (req, res, next) => {
+	try {
+		const persons = await Person.find({})
+		res.json(persons)
+	} catch (error) {
+		next(error)
+	}
+})
+
+app.get('/api/persons/:id', async (req, res, next) => {
+	try {
+		const person = await Person.findById(req.params.id)
+		if (!person) {
+			return res.status(404).end()
+		}
+
+		res.json(person)
+	} catch (error) {
+		next(error)
+	}
+})
+
+app.delete('/api/persons/:id', async (req, res, next) => {
+	try {
+		await Person.findByIdAndDelete(req.params.id)
+		res.status(204).end()
+	} catch (error) {
+		next(error)
+	}
+})
+
+app.post('/api/persons', async (req, res, next) => {
+	try {
+		const { name, number } = req.body
+		const person = new Person({ name, number })
+		const savedPerson = await person.save()
+		res.status(201).json(savedPerson)
+	} catch (error) {
+		next(error)
+	}
+})
+
+app.put('/api/persons/:id', async (req, res, next) => {
+	try {
+		const updatedPerson = await Person.findByIdAndUpdate(
+			req.params.id,
+			{ name: req.body.name, number: req.body.number },
+			{ new: true, runValidators: true, context: 'query' }
+		)
+		if (!updatedPerson) {
+			return res.status(404).end()
+		}
+
+		res.json(updatedPerson)
+	} catch (error) {
+		next(error)
+	}
+})
+
+const unknownEndpoint = (_req, res) => {
+	res.status(404).send({ error: 'unknown endpoint' })
+}
+
+const errorHandler = (error, _req, res, next) => {
+	console.error(error.message)
+
+	if (error.name === 'CastError') {
+		return res.status(400).send({ error: 'malformatted id' })
+	}
+
+	if (error.name === 'ValidationError') {
+		return res.status(400).json({ error: error.message })
+	}
+
+	if (error.code === 11000) {
+		return res.status(400).json({ error: 'name must be unique' })
+	}
+
+	next(error)
 }
 
 app.use(unknownEndpoint)
@@ -113,5 +132,5 @@ app.use(errorHandler)
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
+	console.log(`Server running on port ${PORT}`)
 })
