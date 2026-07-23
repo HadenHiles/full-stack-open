@@ -67,6 +67,16 @@ test('a blog without a title or URL is rejected', async () => {
   assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length)
 })
 
+test('a blog can be deleted', async () => {
+  const blogsAtStart = await helper.blogsInDb()
+  const blogToDelete = blogsAtStart[0]
+
+  await api.delete(`/api/blogs/${blogToDelete.id}`).expect(204)
+
+  const blogsAtEnd = await helper.blogsInDb()
+  assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length - 1)
+})
+
 after(async () => {
   await mongoose.connection.close()
 })
