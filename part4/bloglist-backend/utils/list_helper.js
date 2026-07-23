@@ -1,27 +1,56 @@
 const dummy = (_blogs) => 1
 
-const totalLikes = blogs => blogs.reduce((sum, blog) => sum + blog.likes, 0)
+const totalsByAuthor = (blogs, valueForBlog) => {
+	return blogs.reduce((totals, blog) => {
+		totals[blog.author] = (totals[blog.author] || 0) + valueForBlog(blog)
+		return totals
+	}, {})
+}
 
-const favoriteBlog = blogs => blogs.reduce(
-  (favorite, blog) => (!favorite || blog.likes > favorite.likes ? blog : favorite),
-  null
-)
+const totalLikes = blogs => {
+	return blogs.reduce((total, blog) => total + blog.likes, 0)
+}
+
+const favoriteBlog = blogs => {
+	return blogs.reduce((currentFavorite, blog) => {
+		// Starting with null also keeps the empty-list case simple.
+		if (!currentFavorite || blog.likes > currentFavorite.likes) {
+			return blog
+		}
+
+		return currentFavorite
+	}, null)
+}
 
 const mostBlogs = blogs => {
-  const blogCounts = blogs.reduce((counts, blog) => {
-    counts[blog.author] = (counts[blog.author] || 0) + 1
-    return counts
-  }, {})
+	// Count first, then pick the winner. Easier to debug than one large reduce.
+	const blogCounts = totalsByAuthor(blogs, () => 1)
 
-  return Object.entries(blogCounts).reduce(
-    (topAuthor, [author, blogs]) => (!topAuthor || blogs > topAuthor.blogs ? { author, blogs } : topAuthor),
-    null
-  )
+	return Object.entries(blogCounts).reduce((topAuthor, [author, blogCount]) => {
+		if (!topAuthor || blogCount > topAuthor.blogs) {
+			return { author, blogs: blogCount }
+		}
+
+		return topAuthor
+	}, null)
+}
+
+const mostLikes = blogs => {
+	const likeCounts = totalsByAuthor(blogs, blog => blog.likes)
+
+	return Object.entries(likeCounts).reduce((topAuthor, [author, likes]) => {
+		if (!topAuthor || likes > topAuthor.likes) {
+			return { author, likes }
+		}
+
+		return topAuthor
+	}, null)
 }
 
 module.exports = {
-  dummy,
-  totalLikes,
-  favoriteBlog,
-  mostBlogs,
+	dummy,
+	totalLikes,
+	favoriteBlog,
+	mostBlogs,
+	mostLikes,
 }
