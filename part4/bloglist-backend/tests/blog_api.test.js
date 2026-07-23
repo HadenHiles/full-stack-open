@@ -48,6 +48,15 @@ test('a valid blog can be added', async () => {
   assert(blogsAtEnd.some(blog => blog.title === newBlog.title))
 })
 
+test('a blog without likes defaults to zero', async () => {
+  const response = await api
+    .post('/api/blogs')
+    .send({ title: 'No likes yet', author: 'Ada Lovelace', url: 'https://example.com/no-likes' })
+    .expect(201)
+
+  assert.strictEqual(response.body.likes, 0)
+})
+
 after(async () => {
   await mongoose.connection.close()
 })
