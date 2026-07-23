@@ -77,6 +77,17 @@ test('a blog can be deleted', async () => {
   assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length - 1)
 })
 
+test('a blog can be updated', async () => {
+  const blogToUpdate = (await helper.blogsInDb())[0]
+
+  const response = await api
+    .put(`/api/blogs/${blogToUpdate.id}`)
+    .send({ ...blogToUpdate, likes: 42 })
+    .expect(200)
+
+  assert.strictEqual(response.body.likes, 42)
+})
+
 after(async () => {
   await mongoose.connection.close()
 })

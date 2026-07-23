@@ -30,11 +30,11 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 | 1 | Introduction to React | 14 | 14 | 100% |
 | 2 | Communicating with server | 20 | 20 | 100% |
 | 3 | Programming a server with NodeJS and Express | 22 | 22 | 100% |
-| 4 | Testing Express servers, user administration | 13 | 23 | 57% |
+| 4 | Testing Express servers, user administration | 14 | 23 | 61% |
 | 5 | Testing React apps | 0 | 31 | 0% |
 | 6 | Advanced state management | 0 | 22 | 0% |
 | 7 | React router, custom hooks, styling app with CSS | 0 | 20 | 0% |
-| **Total** | | **75** | **158** | **47%** |
+| **Total** | | **76** | **158** | **48%** |
 <!-- progress-summary:end -->
 
 ---
@@ -136,7 +136,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 </details>
 
 <details>
-<summary><strong>Part 4 — Testing Express servers, user administration</strong> — 13/23</summary>
+<summary><strong>Part 4 — Testing Express servers, user administration</strong> — 14/23</summary>
 
 **Applications:** `part4/bloglist-backend/`
 
@@ -153,7 +153,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 - [x] **[4.11\*: Blog List Tests, step 4](https://fullstackopen.com/en/part4/testing_the_backend)** — Optional
 - [x] **[4.12\*: Blog List tests, step 5](https://fullstackopen.com/en/part4/testing_the_backend)** — Optional
 - [x] **[4.13 Blog List Expansions, step 1](https://fullstackopen.com/en/part4/user_administration)**
-- [ ] **[4.14 Blog List Expansions, step 2](https://fullstackopen.com/en/part4/user_administration)**
+- [x] **[4.14 Blog List Expansions, step 2](https://fullstackopen.com/en/part4/user_administration)**
 - [ ] **[4.15: Blog List Expansion, step 3](https://fullstackopen.com/en/part4/user_administration)**
 - [ ] **[4.16\*: Blog List Expansion, step 4](https://fullstackopen.com/en/part4/user_administration)** — Optional
 - [ ] **[4.17: Blog List Expansion, step 5](https://fullstackopen.com/en/part4/token_authentication)**
