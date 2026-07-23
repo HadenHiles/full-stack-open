@@ -57,6 +57,16 @@ test('a blog without likes defaults to zero', async () => {
   assert.strictEqual(response.body.likes, 0)
 })
 
+test('a blog without a title or URL is rejected', async () => {
+  await api
+    .post('/api/blogs')
+    .send({ author: 'Ada Lovelace', likes: 1 })
+    .expect(400)
+
+  const blogsAtEnd = await helper.blogsInDb()
+  assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length)
+})
+
 after(async () => {
   await mongoose.connection.close()
 })
