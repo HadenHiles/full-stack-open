@@ -78,13 +78,13 @@ test('a blog without a title or URL is rejected', async () => {
 })
 
 test('a blog can be deleted', async () => {
-  const blogsAtStart = await helper.blogsInDb()
-  const blogToDelete = blogsAtStart[0]
+  const created = await api.post('/api/blogs').set('Authorization', `Bearer ${token}`).send({ title: 'Disposable', url: 'https://example.com/disposable' }).expect(201)
+  const blogToDelete = created.body
 
-  await api.delete(`/api/blogs/${blogToDelete.id}`).expect(204)
+  await api.delete(`/api/blogs/${blogToDelete.id}`).set('Authorization', `Bearer ${token}`).expect(204)
 
   const blogsAtEnd = await helper.blogsInDb()
-  assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length - 1)
+  assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length)
 })
 
 test('a blog can be updated', async () => {
