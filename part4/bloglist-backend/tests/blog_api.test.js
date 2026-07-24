@@ -5,14 +5,18 @@ const supertest = require('supertest')
 const app = require('../app')
 const Blog = require('../models/blog')
 const User = require('../models/user')
+const jwt = require('jsonwebtoken')
+const config = require('../utils/config')
 const helper = require('./test_helper')
 
 const api = supertest(app)
+let token
 
 beforeEach(async () => {
   await Blog.deleteMany({})
   await User.deleteMany({})
-  await new User({ username: 'blogger', name: 'Blog Creator', passwordHash: 'hash' }).save()
+  const user = await new User({ username: 'blogger', name: 'Blog Creator', passwordHash: 'hash' }).save()
+  token = jwt.sign({ username: user.username, id: user._id }, config.SECRET)
   await Blog.insertMany(helper.initialBlogs)
 })
 
@@ -42,6 +46,7 @@ test('a valid blog can be added', async () => {
 
   await api
     .post('/api/blogs')
+    .set('Authorization', `Bearer ${token}`)
     .send(newBlog)
     .expect(201)
     .expect('Content-Type', /application\/json/)
@@ -54,6 +59,7 @@ test('a valid blog can be added', async () => {
 test('a blog without likes defaults to zero', async () => {
   const response = await api
     .post('/api/blogs')
+    .set('Authorization', `Bearer ${token}`)
     .send({ title: 'No likes yet', author: 'Ada Lovelace', url: 'https://example.com/no-likes' })
     .expect(201)
 
@@ -63,6 +69,7 @@ test('a blog without likes defaults to zero', async () => {
 test('a blog without a title or URL is rejected', async () => {
   await api
     .post('/api/blogs')
+    .set('Authorization', `Bearer ${token}`)
     .send({ author: 'Ada Lovelace', likes: 1 })
     .expect(400)
 
@@ -92,7 +99,7 @@ test('a blog can be updated', async () => {
 })
 
 test('blogs and users include their related resources', async () => {
-  await api.post('/api/blogs').send({ title: 'Owned blog', url: 'https://example.com/owned' }).expect(201)
+  await api.post('/api/blogs').set('Authorization', `Bearer ${token}`).send({ title: 'Owned blog', url: 'https://example.com/owned' }).expect(201)
 
   const blogs = await api.get('/api/blogs')
   const users = await api.get('/api/users')
