@@ -4,12 +4,15 @@ const mongoose = require('mongoose')
 const supertest = require('supertest')
 const app = require('../app')
 const Blog = require('../models/blog')
+const User = require('../models/user')
 const helper = require('./test_helper')
 
 const api = supertest(app)
 
 beforeEach(async () => {
   await Blog.deleteMany({})
+  await User.deleteMany({})
+  await new User({ username: 'blogger', name: 'Blog Creator', passwordHash: 'hash' }).save()
   await Blog.insertMany(helper.initialBlogs)
 })
 
@@ -86,6 +89,15 @@ test('a blog can be updated', async () => {
     .expect(200)
 
   assert.strictEqual(response.body.likes, 42)
+})
+
+test('blogs and users include their related resources', async () => {
+  await api.post('/api/blogs').send({ title: 'Owned blog', url: 'https://example.com/owned' }).expect(201)
+
+  const blogs = await api.get('/api/blogs')
+  const users = await api.get('/api/users')
+  assert.strictEqual(blogs.body.find(blog => blog.title === 'Owned blog').user.username, 'blogger')
+  assert.strictEqual(users.body[0].blogs.length, 1)
 })
 
 after(async () => {
