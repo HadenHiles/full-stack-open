@@ -13,16 +13,36 @@ const App = () => {
     blogService.getAll().then(setBlogs)
   }, [])
 
+  useEffect(() => {
+    const storedUser = window.localStorage.getItem('loggedBlogappUser')
+    if (storedUser) {
+      const savedUser = JSON.parse(storedUser)
+      setUser(savedUser)
+      blogService.setToken(savedUser.token)
+    }
+  }, [])
+
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
       const loggedInUser = await loginService.login({ username, password })
+      window.localStorage.setItem(
+        'loggedBlogappUser',
+        JSON.stringify(loggedInUser),
+      )
+      blogService.setToken(loggedInUser.token)
       setUser(loggedInUser)
       setUsername('')
       setPassword('')
     } catch {
       // Notifications are introduced in exercise 5.4.
     }
+  }
+
+  const handleLogout = () => {
+    window.localStorage.removeItem('loggedBlogappUser')
+    blogService.setToken(null)
+    setUser(null)
   }
 
   if (!user) {
@@ -58,7 +78,9 @@ const App = () => {
   return (
     <div>
       <h2>blogs</h2>
-      <p>{user.name} logged in</p>
+      <p>
+        {user.name} logged in <button onClick={handleLogout}>logout</button>
+      </p>
       {blogs.map((blog) => (
         <Blog key={blog.id} blog={blog} />
       ))}
