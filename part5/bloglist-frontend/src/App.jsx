@@ -63,7 +63,7 @@ const App = () => {
   const createBlog = async (blog) => {
     try {
       const createdBlog = await blogService.create(blog)
-      setBlogs(blogs.concat(createdBlog))
+      setBlogs(blogs.concat({ ...createdBlog, user }))
       notify(`a new blog ${createdBlog.title} by ${createdBlog.author} added`)
       blogFormRef.current.toggleVisibility()
     } catch {
@@ -84,6 +84,16 @@ const App = () => {
         item.id === blog.id ? { ...updatedBlog, user: blog.user } : item,
       ),
     )
+  }
+
+  const removeBlog = async (blog) => {
+    if (!window.confirm(`Remove blog ${blog.title} by ${blog.author}?`)) return
+    try {
+      await blogService.remove(blog.id)
+      setBlogs(blogs.filter((item) => item.id !== blog.id))
+    } catch {
+      notify('blog could not be removed', 'error')
+    }
   }
 
   if (!user) {
@@ -128,7 +138,13 @@ const App = () => {
         <BlogForm createBlog={createBlog} />
       </Togglable>
       {[...blogs].sort((a, b) => b.likes - a.likes).map((blog) => (
-        <Blog key={blog.id} blog={blog} handleLike={() => likeBlog(blog)} />
+        <Blog
+          key={blog.id}
+          blog={blog}
+          handleLike={() => likeBlog(blog)}
+          handleRemove={() => removeBlog(blog)}
+          canRemove={blog.user?.username === user.username}
+        />
       ))}
     </div>
   )
