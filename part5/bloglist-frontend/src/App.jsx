@@ -2,6 +2,12 @@ import { useEffect, useState } from 'react'
 import Blog from './components/Blog'
 import blogService from './services/blogs'
 import loginService from './services/login'
+import './index.css'
+
+const Notification = ({ notification }) => {
+  if (!notification) return null
+  return <div className={notification.type}>{notification.message}</div>
+}
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -11,6 +17,12 @@ const App = () => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
+  const [notification, setNotification] = useState(null)
+
+  const notify = (message, type = 'success') => {
+    setNotification({ message, type })
+    setTimeout(() => setNotification(null), 5000)
+  }
 
   useEffect(() => {
     blogService.getAll().then(setBlogs)
@@ -38,7 +50,7 @@ const App = () => {
       setUsername('')
       setPassword('')
     } catch {
-      // Notifications are introduced in exercise 5.4.
+      notify('wrong username or password', 'error')
     }
   }
 
@@ -50,17 +62,23 @@ const App = () => {
 
   const createBlog = async (event) => {
     event.preventDefault()
-    const createdBlog = await blogService.create({ title, author, url })
-    setBlogs(blogs.concat(createdBlog))
-    setTitle('')
-    setAuthor('')
-    setUrl('')
+    try {
+      const createdBlog = await blogService.create({ title, author, url })
+      setBlogs(blogs.concat(createdBlog))
+      setTitle('')
+      setAuthor('')
+      setUrl('')
+      notify(`a new blog ${createdBlog.title} by ${createdBlog.author} added`)
+    } catch {
+      notify('blog could not be created', 'error')
+    }
   }
 
   if (!user) {
     return (
       <div>
         <h2>Log in to application</h2>
+        <Notification notification={notification} />
         <form onSubmit={handleLogin}>
           <div>
             <label>
@@ -90,6 +108,7 @@ const App = () => {
   return (
     <div>
       <h2>blogs</h2>
+      <Notification notification={notification} />
       <p>
         {user.name} logged in <button onClick={handleLogout}>logout</button>
       </p>
