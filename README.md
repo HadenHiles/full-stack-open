@@ -183,7 +183,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 - [x] **[5.10: Blog List Frontend, step 10](https://fullstackopen.com/en/part5/props_children_and_component_refs)**
 - [x] **[5.11: Blog List Frontend, step 11](https://fullstackopen.com/en/part5/props_children_and_component_refs)**
 - [x] **[5.12: Blog List Frontend, step 12](https://fullstackopen.com/en/part5/props_children_and_component_refs)**
-- [ ] **[5.13: Blog List Tests, step 1](https://fullstackopen.com/en/part5/testing_react_apps)**
+- [x] **[5.13: Blog List Tests, step 1](https://fullstackopen.com/en/part5/testing_react_apps)**
 - [ ] **[5.14: Blog List Tests, step 2](https://fullstackopen.com/en/part5/testing_react_apps)**
 - [ ] **[5.15: Blog List Tests, step 3](https://fullstackopen.com/en/part5/testing_react_apps)**
 - [ ] **[5.16: Blog List Tests, step 4](https://fullstackopen.com/en/part5/testing_react_apps)**
