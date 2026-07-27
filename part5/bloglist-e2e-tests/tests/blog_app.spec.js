@@ -37,4 +37,22 @@ test.describe('Blog app', () => {
       await expect(page.getByText('Test User logged in')).not.toBeVisible()
     })
   })
+
+  test.describe('When logged in', () => {
+    test.beforeEach(async ({ page }) => {
+      await page.getByLabel('username').fill('tester')
+      await page.getByLabel('password').fill('secret')
+      await page.getByRole('button', { name: 'login' }).click()
+    })
+
+    test('a new blog can be created', async ({ page }) => {
+      await page.getByRole('button', { name: 'create new blog' }).click()
+      await page.getByLabel('title').fill('End-to-end testing')
+      await page.getByLabel('author').fill('Test User')
+      await page.getByLabel('url').fill('https://example.com/e2e')
+      await page.getByRole('button', { name: 'create' }).click()
+
+      await expect(page.getByText(/End-to-end testing Test User/)).toBeVisible()
+    })
+  })
 })
