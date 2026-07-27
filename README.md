@@ -186,7 +186,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 - [x] **[5.13: Blog List Tests, step 1](https://fullstackopen.com/en/part5/testing_react_apps)**
 - [x] **[5.14: Blog List Tests, step 2](https://fullstackopen.com/en/part5/testing_react_apps)**
 - [x] **[5.15: Blog List Tests, step 3](https://fullstackopen.com/en/part5/testing_react_apps)**
-- [ ] **[5.16: Blog List Tests, step 4](https://fullstackopen.com/en/part5/testing_react_apps)**
+- [x] **[5.16: Blog List Tests, step 4](https://fullstackopen.com/en/part5/testing_react_apps)**
 - [ ] **[5.17: Blog List End To End Testing, step 1](https://fullstackopen.com/en/part5/end_to_end_testing)**
 - [ ] **[5.18: Blog List End To End Testing, step 2](https://fullstackopen.com/en/part5/end_to_end_testing)**
 - [ ] **[5.19: Blog List End To End Testing, step 3](https://fullstackopen.com/en/part5/end_to_end_testing)**
