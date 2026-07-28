@@ -98,5 +98,27 @@ test.describe('Blog app', () => {
 
       await expect(page.getByRole('button', { name: 'remove' })).not.toBeVisible()
     })
+
+    test('blogs are ordered with the most liked first', async ({ page, request }) => {
+      const loginResponse = await request.post('http://localhost:3001/api/login', {
+        data: { username: 'tester', password: 'secret' },
+      })
+      const { token } = await loginResponse.json()
+      const headers = { Authorization: `Bearer ${token}` }
+      const entries = [
+        { title: 'Few likes', author: 'One', url: 'https://example.com/1', likes: 1 },
+        { title: 'Most likes', author: 'Two', url: 'https://example.com/2', likes: 12 },
+        { title: 'Some likes', author: 'Three', url: 'https://example.com/3', likes: 5 },
+      ]
+      for (const data of entries) {
+        await request.post('http://localhost:3001/api/blogs', { data, headers })
+      }
+      await page.reload()
+
+      const blogs = page.locator('.blog-summary')
+      await expect(blogs.nth(0)).toContainText('Most likes')
+      await expect(blogs.nth(1)).toContainText('Some likes')
+      await expect(blogs.nth(2)).toContainText('Few likes')
+    })
   })
 })
