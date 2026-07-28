@@ -66,5 +66,18 @@ test.describe('Blog app', () => {
 
       await expect(page.getByText('likes 1')).toBeVisible()
     })
+
+    test('the creator can delete a blog', async ({ page }) => {
+      await page.getByRole('button', { name: 'create new blog' }).click()
+      await page.getByLabel('title').fill('Disposable blog')
+      await page.getByLabel('author').fill('Test User')
+      await page.getByLabel('url').fill('https://example.com/delete')
+      await page.getByRole('button', { name: 'create' }).click()
+      await page.getByRole('button', { name: 'view' }).click()
+      page.on('dialog', (dialog) => dialog.accept())
+      await page.getByRole('button', { name: 'remove' }).click()
+
+      await expect(page.getByText(/Disposable blog Test User/)).not.toBeVisible()
+    })
   })
 })
