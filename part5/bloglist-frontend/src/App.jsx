@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Container } from '@mui/material'
+import {
+	AppBar,
+	Box,
+	Button,
+	Container,
+	Toolbar,
+	Typography,
+} from '@mui/material'
 import {
 	Link,
 	Navigate,
@@ -44,25 +51,24 @@ const App = () => {
 
 	const showNotification = (message, type = 'success') => {
 		setNotification({ message, type })
-
-		// Notifications are useful, but they should not hang around forever.
+		// auto-clear after 5 seconds
 		setTimeout(() => setNotification(null), 5000)
 	}
 
 	useEffect(() => {
 		blogService
 			.getAll()
-			.then(blogsFromServer => setBlogs(blogsFromServer))
+			.then(setBlogs)
 	}, [])
 
 	useEffect(() => {
-		// Restore the session before the user tries anything that needs a token.
-		const storedUserJson = window.localStorage.getItem('loggedBlogappUser')
+		// check localStorage for a saved session
+		const userJson = window.localStorage.getItem('loggedBlogappUser')
 
-		if (storedUserJson) {
-			const storedUser = JSON.parse(storedUserJson)
-			setUser(storedUser)
-			blogService.setToken(storedUser.token)
+		if (userJson) {
+			const savedUser = JSON.parse(userJson)
+			setUser(savedUser)
+			blogService.setToken(savedUser.token)
 		}
 	}, [])
 
@@ -155,17 +161,38 @@ const App = () => {
 
 	return (
 		<Container maxWidth="md">
-			<nav>
-				<Link to="/">blogs</Link>{' '}
-				{user && <Link to="/create">create new</Link>}{' '}
-				{!user && <Link to="/login">login</Link>}
-				{user && (
-					<>
-						{user.name} logged in{' '}
-						<button onClick={handleLogout}>logout</button>
-					</>
-				)}
-			</nav>
+			<AppBar position="static" sx={{ mt: 2 }}>
+				<Toolbar>
+					<Button color="inherit" component={Link} to="/">
+						blogs
+					</Button>
+					{user && (
+						<Button color="inherit" component={Link} to="/create">
+							create new
+						</Button>
+					)}
+					{!user && (
+						<Button color="inherit" component={Link} to="/login">
+							login
+						</Button>
+					)}
+					{user && (
+						<Box
+							sx={{
+								alignItems: 'center',
+								display: 'flex',
+								gap: 1,
+								ml: 'auto',
+							}}
+						>
+							<Typography>{user.name} logged in</Typography>
+							<Button color="inherit" onClick={handleLogout}>
+								logout
+							</Button>
+						</Box>
+					)}
+				</Toolbar>
+			</AppBar>
 			<h1>Blog application</h1>
 			<Notification notification={notification} />
 			<Routes>
