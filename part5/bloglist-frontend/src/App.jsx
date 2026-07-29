@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Container } from '@mui/material'
 import {
 	Link,
 	Navigate,
@@ -153,7 +154,7 @@ const App = () => {
 	)
 
 	return (
-		<div>
+		<Container maxWidth="md">
 			<nav>
 				<Link to="/">blogs</Link>{' '}
 				{user && <Link to="/create">create new</Link>}{' '}
@@ -209,7 +210,7 @@ const App = () => {
 					}
 				/>
 			</Routes>
-		</div>
+		</Container>
 	)
 }
 

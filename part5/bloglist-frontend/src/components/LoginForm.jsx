@@ -1,3 +1,5 @@
+import { Box, Button, TextField } from '@mui/material'
+
 const LoginForm = ({
 	handleLogin,
 	username,
@@ -8,28 +10,30 @@ const LoginForm = ({
 	return (
 		<div>
 			<h2>Log in to application</h2>
-			<form onSubmit={handleLogin}>
-				<div>
-					<label>
-						username
-						<input
-							value={username}
-							onChange={({ target }) => setUsername(target.value)}
-						/>
-					</label>
-				</div>
-				<div>
-					<label>
-						password
-						<input
-							type="password"
-							value={password}
-							onChange={({ target }) => setPassword(target.value)}
-						/>
-					</label>
-				</div>
-				<button type="submit">login</button>
-			</form>
+			<Box
+				component="form"
+				onSubmit={handleLogin}
+				sx={{ maxWidth: 420 }}
+			>
+				<TextField
+					fullWidth
+					label="username"
+					value={username}
+					onChange={({ target }) => setUsername(target.value)}
+					margin="normal"
+				/>
+				<TextField
+					fullWidth
+					label="password"
+					type="password"
+					value={password}
+					onChange={({ target }) => setPassword(target.value)}
+					margin="normal"
+				/>
+				<Button type="submit" variant="contained" sx={{ mt: 1 }}>
+					login
+				</Button>
+			</Box>
 		</div>
 	)
 }
