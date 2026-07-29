@@ -201,7 +201,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 - [x] **[5.28: routed blogs, step5](https://fullstackopen.com/en/part5/react_router_ui_frameworks)**
 - [x] **[5.29: styled blogs, step 1](https://fullstackopen.com/en/part5/react_router_ui_frameworks)**
 - [x] **[5.30: styled blogs, step2](https://fullstackopen.com/en/part5/react_router_ui_frameworks)**
-- [ ] **[5.31: styled blogs, step 3](https://fullstackopen.com/en/part5/react_router_ui_frameworks)**
+- [x] **[5.31: styled blogs, step 3](https://fullstackopen.com/en/part5/react_router_ui_frameworks)**
 
 </details>
 
