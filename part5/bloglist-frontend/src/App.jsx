@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link, Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import Blog from './components/Blog'
 import BlogForm from './components/BlogForm'
 import Togglable from './components/Togglable'
@@ -12,6 +13,7 @@ const Notification = ({ notification }) => {
 }
 
 const App = () => {
+  const navigate = useNavigate()
   const [blogs, setBlogs] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -49,6 +51,7 @@ const App = () => {
       setUser(loggedInUser)
       setUsername('')
       setPassword('')
+      navigate('/')
     } catch {
       notify('wrong username or password', 'error')
     }
@@ -58,6 +61,7 @@ const App = () => {
     window.localStorage.removeItem('loggedBlogappUser')
     blogService.setToken(null)
     setUser(null)
+    navigate('/')
   }
 
   const createBlog = async (blog) => {
@@ -96,56 +100,76 @@ const App = () => {
     }
   }
 
-  if (!user) {
-    return (
-      <div>
-        <h2>Log in to application</h2>
-        <Notification notification={notification} />
-        <form onSubmit={handleLogin}>
-          <div>
-            <label>
-              username
-              <input
-                value={username}
-                onChange={({ target }) => setUsername(target.value)}
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              password
-              <input
-                type="password"
-                value={password}
-                onChange={({ target }) => setPassword(target.value)}
-              />
-            </label>
-          </div>
-          <button type="submit">login</button>
-        </form>
-      </div>
-    )
-  }
+  const loginView = (
+    <div>
+      <h2>Log in to application</h2>
+      <form onSubmit={handleLogin}>
+        <div>
+          <label>
+            username
+            <input
+              value={username}
+              onChange={({ target }) => setUsername(target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            password
+            <input
+              type="password"
+              value={password}
+              onChange={({ target }) => setPassword(target.value)}
+            />
+          </label>
+        </div>
+        <button type="submit">login</button>
+      </form>
+    </div>
+  )
 
   return (
     <div>
-      <h2>blogs</h2>
+      <nav>
+        <Link to="/">blogs</Link>{' '}
+        {!user && <Link to="/login">login</Link>}
+        {user && (
+          <>
+            {user.name} logged in{' '}
+            <button onClick={handleLogout}>logout</button>
+          </>
+        )}
+      </nav>
+      <h1>Blog application</h1>
       <Notification notification={notification} />
-      <p>
-        {user.name} logged in <button onClick={handleLogout}>logout</button>
-      </p>
-      <Togglable buttonLabel="create new blog" ref={blogFormRef}>
-        <BlogForm createBlog={createBlog} />
-      </Togglable>
-      {[...blogs].sort((a, b) => b.likes - a.likes).map((blog) => (
-        <Blog
-          key={blog.id}
-          blog={blog}
-          handleLike={() => likeBlog(blog)}
-          handleRemove={() => removeBlog(blog)}
-          canRemove={blog.user?.username === user.username}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div>
+              <h2>blogs</h2>
+              {user && (
+                <Togglable buttonLabel="create new blog" ref={blogFormRef}>
+                  <BlogForm createBlog={createBlog} />
+                </Togglable>
+              )}
+              {[...blogs].sort((a, b) => b.likes - a.likes).map((blog) => (
+                <Blog
+                  key={blog.id}
+                  blog={blog}
+                  handleLike={() => likeBlog(blog)}
+                  handleRemove={() => removeBlog(blog)}
+                  canRemove={blog.user?.username === user?.username}
+                />
+              ))}
+            </div>
+          }
         />
-      ))}
+        <Route
+          path="/login"
+          element={user ? <Navigate to="/" replace /> : loginView}
+        />
+      </Routes>
     </div>
   )
 }
