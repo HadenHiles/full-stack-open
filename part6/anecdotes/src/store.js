@@ -1,6 +1,8 @@
 
 import { create } from 'zustand'
 
+const baseUrl = 'http://localhost:3001/anecdotes'
+
 const anecdotesAtStart = [
 	'If it hurts, do it more often',
 	'Adding manpower to a late software project makes it later!',
@@ -22,6 +24,12 @@ const useAnecdoteStore = create((set) => ({
 	anecdotes: anecdotesAtStart.map(asObject),
 	filter: 'all',
 	actions: {
+		initialize: async () => {
+			const response = await fetch(baseUrl)
+			const anecdotes = await response.json()
+
+			set({ anecdotes })
+		},
 		create: content => set(state => ({
 			anecdotes: state.anecdotes.concat(asObject(content))
 		})),
