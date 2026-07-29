@@ -1,36 +1,22 @@
-import { useState } from 'react'
+const Blog = ({ blog, user, handleLike, handleRemove }) => {
+	const userCreatedThisBlog = user?.username === blog.user?.username
 
-const Blog = ({ blog, handleLike, handleRemove, canRemove = false }) => {
-  const [detailsVisible, setDetailsVisible] = useState(false)
-  const blogStyle = {
-    paddingTop: 10,
-    paddingLeft: 2,
-    border: 'solid',
-    borderWidth: 1,
-    marginBottom: 5,
-  }
-
-  return (
-    <div style={blogStyle} className="blog">
-      <div className="blog-summary">
-        {blog.title} {blog.author}{' '}
-        <button onClick={() => setDetailsVisible(!detailsVisible)}>
-          {detailsVisible ? 'hide' : 'view'}
-        </button>
-      </div>
-      <div
-        className="blog-details"
-        style={{ display: detailsVisible ? '' : 'none' }}
-      >
-        <div>{blog.url}</div>
-        <div>
-          likes {blog.likes} <button onClick={handleLike}>like</button>
-        </div>
-        <div>{blog.user?.name}</div>
-        {canRemove && <button onClick={handleRemove}>remove</button>}
-      </div>
-    </div>
-  )
+	return (
+		<div className="blog-details">
+			<h2>{blog.title}</h2>
+			<div>
+				<a href={blog.url}>{blog.url}</a>
+			</div>
+			<div>
+				{blog.likes} likes{' '}
+				{user && <button onClick={handleLike}>like</button>}
+			</div>
+			<div>added by {blog.user?.name}</div>
+			{userCreatedThisBlog && (
+				<button onClick={handleRemove}>remove</button>
+			)}
+		</div>
+	)
 }
 
 export default Blog

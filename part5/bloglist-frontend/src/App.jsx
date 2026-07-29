@@ -1,5 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, Navigate, Route, Routes, useNavigate } from 'react-router-dom'
+import {
+  Link,
+  Navigate,
+  Route,
+  Routes,
+  useNavigate,
+  useParams,
+} from 'react-router-dom'
 import Blog from './components/Blog'
 import BlogForm from './components/BlogForm'
 import Togglable from './components/Togglable'
@@ -10,6 +17,20 @@ import './index.css'
 const Notification = ({ notification }) => {
   if (!notification) return null
   return <div className={notification.type}>{notification.message}</div>
+}
+
+const BlogView = ({ blogs, user, likeBlog, removeBlog }) => {
+  const { id } = useParams()
+  const blog = blogs.find((item) => item.id === id)
+  if (!blog) return null
+  return (
+    <Blog
+      blog={blog}
+      user={user}
+      handleLike={() => likeBlog(blog)}
+      handleRemove={() => removeBlog(blog)}
+    />
+  )
 }
 
 const App = () => {
@@ -154,15 +175,22 @@ const App = () => {
                 </Togglable>
               )}
               {[...blogs].sort((a, b) => b.likes - a.likes).map((blog) => (
-                <Blog
-                  key={blog.id}
-                  blog={blog}
-                  handleLike={() => likeBlog(blog)}
-                  handleRemove={() => removeBlog(blog)}
-                  canRemove={blog.user?.username === user?.username}
-                />
+                <div className="blog" key={blog.id}>
+                  <Link to={`/blogs/${blog.id}`}>{blog.title}</Link>
+                </div>
               ))}
             </div>
+          }
+        />
+        <Route
+          path="/blogs/:id"
+          element={
+            <BlogView
+              blogs={blogs}
+              user={user}
+              likeBlog={likeBlog}
+              removeBlog={removeBlog}
+            />
           }
         />
         <Route
