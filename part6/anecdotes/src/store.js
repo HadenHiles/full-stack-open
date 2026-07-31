@@ -30,9 +30,16 @@ const useAnecdoteStore = create((set) => ({
 
 			set({ anecdotes })
 		},
-		create: content => set(state => ({
-			anecdotes: state.anecdotes.concat(asObject(content))
-		})),
+		create: async content => {
+			const response = await fetch(baseUrl, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(asObject(content)),
+			})
+			const anecdote = await response.json()
+
+			set(state => ({ anecdotes: state.anecdotes.concat(anecdote) }))
+		},
 		vote: id => set(state => ({
 			anecdotes: state.anecdotes.map(anecdote =>
 				anecdote.id === id
