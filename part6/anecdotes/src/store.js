@@ -55,6 +55,13 @@ const useAnecdoteStore = create((set, get) => ({
 				)
 			}))
 		},
+		remove: async id => {
+			await fetch(`${baseUrl}/${id}`, { method: 'DELETE' })
+
+			set(state => ({
+				anecdotes: state.anecdotes.filter(anecdote => anecdote.id !== id)
+			}))
+		},
 		setFilter: filter => set({ filter }),
 	},
 }))
