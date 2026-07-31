@@ -9,7 +9,7 @@ const AnecdoteList = () => {
 	const sortedAnecdotes = [...anecdotes].sort((first, second) => second.votes - first.votes)
 
 	return sortedAnecdotes.map(anecdote => (
-		<div key={anecdote.id}>
+		<div key={anecdote.id} data-testid="anecdote">
 			<div>{anecdote.content}</div>
 			<div>
 				has {anecdote.votes}
