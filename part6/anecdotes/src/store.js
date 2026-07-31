@@ -20,7 +20,7 @@ const asObject = anecdote => ({
 	votes: 0
 })
 
-const useAnecdoteStore = create((set) => ({
+const useAnecdoteStore = create((set, get) => ({
 	anecdotes: anecdotesAtStart.map(asObject),
 	filter: 'all',
 	actions: {
@@ -40,13 +40,21 @@ const useAnecdoteStore = create((set) => ({
 
 			set(state => ({ anecdotes: state.anecdotes.concat(anecdote) }))
 		},
-		vote: id => set(state => ({
-			anecdotes: state.anecdotes.map(anecdote =>
-				anecdote.id === id
-					? { ...anecdote, votes: anecdote.votes + 1 }
-					: anecdote
-			)
-		})),
+		vote: async id => {
+			const anecdote = get().anecdotes.find(item => item.id === id)
+			const response = await fetch(`${baseUrl}/${id}`, {
+				method: 'PATCH',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ votes: anecdote.votes + 1 }),
+			})
+			const updatedAnecdote = await response.json()
+
+			set(state => ({
+				anecdotes: state.anecdotes.map(item =>
+					item.id === id ? updatedAnecdote : item
+				)
+			}))
+		},
 		setFilter: filter => set({ filter }),
 	},
 }))
