@@ -10,7 +10,9 @@ const App = () => {
 		isPending,
 		createAnecdote,
 		voteForAnecdote,
-	} = useAnecdotes()
+	} = useAnecdotes({
+		onCreateError: () => showNotification('anecdote must be at least 5 characters long'),
+	})
 	const [notification, setNotification] = useState(null)
 	const timeoutId = useRef()
 
