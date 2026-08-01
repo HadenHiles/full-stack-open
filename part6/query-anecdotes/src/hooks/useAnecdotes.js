@@ -8,9 +8,11 @@ const useAnecdotes = ({ onCreateError } = {}) => {
 		queryFn: getAll,
 		retry: false,
 	})
-	const invalidateAnecdotes = () => queryClient.invalidateQueries({
-		queryKey: ['anecdotes']
-	})
+	// Mutations change the server, so refresh the cached list afterwards.
+	const invalidateAnecdotes = () =>
+		queryClient.invalidateQueries({
+			queryKey: ['anecdotes'],
+		})
 	const newAnecdoteMutation = useMutation({
 		mutationFn: create,
 		onSuccess: invalidateAnecdotes,
@@ -25,11 +27,13 @@ const useAnecdotes = ({ onCreateError } = {}) => {
 		anecdotes: result.data,
 		isError: result.isError,
 		isPending: result.isPending,
-		createAnecdote: content => newAnecdoteMutation.mutate({ content, votes: 0 }),
-		voteForAnecdote: anecdote => voteMutation.mutate({
-			...anecdote,
-			votes: anecdote.votes + 1,
-		}),
+		createAnecdote: (content) =>
+			newAnecdoteMutation.mutate({ content, votes: 0 }),
+		voteForAnecdote: (anecdote) =>
+			voteMutation.mutate({
+				...anecdote,
+				votes: anecdote.votes + 1,
+			}),
 	}
 }
 

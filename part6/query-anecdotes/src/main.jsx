@@ -10,5 +10,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 		<NotificationContextProvider>
 			<App />
 		</NotificationContextProvider>
-	</QueryClientProvider>
+	</QueryClientProvider>,
 )

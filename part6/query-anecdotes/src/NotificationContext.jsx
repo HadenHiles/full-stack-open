@@ -5,7 +5,8 @@ export const NotificationContextProvider = ({ children }) => {
 	const [notification, setNotification] = useState(null)
 	const timeoutId = useRef()
 
-	const notify = message => {
+	const notify = (message) => {
+		// Replace any pending timeout so an older message cannot clear this one.
 		clearTimeout(timeoutId.current)
 		setNotification(message)
 		timeoutId.current = setTimeout(() => setNotification(null), 5000)

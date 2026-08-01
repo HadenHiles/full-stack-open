@@ -5,7 +5,7 @@ const AnecdoteForm = () => {
 	const { create } = useAnecdoteActions()
 	const { show } = useNotificationActions()
 
-	const handleCreate = event => {
+	const handleCreate = (event) => {
 		event.preventDefault()
 		const content = event.target.anecdote.value
 		create(content)

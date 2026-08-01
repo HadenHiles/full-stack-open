@@ -10,7 +10,7 @@ export const getAll = async () => {
 	return response.json()
 }
 
-export const create = async anecdote => {
+export const create = async (anecdote) => {
 	const response = await fetch(baseUrl, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
@@ -24,7 +24,7 @@ export const create = async anecdote => {
 	return response.json()
 }
 
-export const update = async anecdote => {
+export const update = async (anecdote) => {
 	const response = await fetch(`${baseUrl}/${anecdote.id}`, {
 		method: 'PUT',
 		headers: { 'Content-Type': 'application/json' },

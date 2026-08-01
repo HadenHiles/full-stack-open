@@ -1,5 +1,5 @@
 const AnecdoteForm = ({ onCreate }) => {
-	const handleCreate = event => {
+	const handleCreate = (event) => {
 		event.preventDefault()
 		onCreate(event.target.anecdote.value)
 		event.target.reset()

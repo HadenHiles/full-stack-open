@@ -6,17 +6,23 @@ const AnecdoteList = () => {
 	const { remove, vote } = useAnecdoteActions()
 	const { show } = useNotificationActions()
 
-	const sortedAnecdotes = [...anecdotes].sort((first, second) => second.votes - first.votes)
+	const sortedAnecdotes = [...anecdotes].sort(
+		(first, second) => second.votes - first.votes,
+	)
 
-	return sortedAnecdotes.map(anecdote => (
-		<div key={anecdote.id} data-testid="anecdote">
+	return sortedAnecdotes.map((anecdote) => (
+			<div key={anecdote.id} data-testid="anecdote">
 			<div>{anecdote.content}</div>
 			<div>
 				has {anecdote.votes}
-				<button onClick={() => {
-					vote(anecdote.id)
-					show(`you voted '${anecdote.content}'`)
-				}}>vote</button>
+				<button
+					onClick={() => {
+						vote(anecdote.id)
+						show(`you voted '${anecdote.content}'`)
+					}}
+				>
+					vote
+				</button>
 				{anecdote.votes === 0 && (
 					<button onClick={() => remove(anecdote.id)}>delete</button>
 				)}
