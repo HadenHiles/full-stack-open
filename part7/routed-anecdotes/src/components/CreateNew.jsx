@@ -24,21 +24,26 @@ const CreateNew = ({ addAnecdote }) => {
 		info.reset()
 	}
 
+	// Destructure reset out so it is not forwarded to the DOM input element.
+	const { reset: _resetContent, ...contentProps } = content
+	const { reset: _resetAuthor, ...authorProps } = author
+	const { reset: _resetInfo, ...infoProps } = info
+
 	return (
 		<div>
 			<h2>create a new anecdote</h2>
 			<form onSubmit={handleSubmit}>
 				<div>
 					content
-					<input type={content.type} value={content.value} onChange={content.onChange} />
+					<input {...contentProps} />
 				</div>
 				<div>
 					author
-					<input type={author.type} value={author.value} onChange={author.onChange} />
+					<input {...authorProps} />
 				</div>
 				<div>
 					url for more info
-					<input type={info.type} value={info.value} onChange={info.onChange} />
+					<input {...infoProps} />
 				</div>
 				<button type="submit">create</button>
 				<button type="button" onClick={handleReset}>reset</button>
