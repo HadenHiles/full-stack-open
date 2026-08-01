@@ -1,5 +1,6 @@
-import { useQuery } from '@tanstack/react-query'
-import { getAll } from './services/anecdotes'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import AnecdoteForm from './components/AnecdoteForm'
+import { create, getAll } from './services/anecdotes'
 
 const App = () => {
 	const result = useQuery({
@@ -7,6 +8,15 @@ const App = () => {
 		queryFn: getAll,
 		retry: false,
 	})
+	const queryClient = useQueryClient()
+	const newAnecdoteMutation = useMutation({
+		mutationFn: create,
+		onSuccess: () => queryClient.invalidateQueries({ queryKey: ['anecdotes'] }),
+	})
+
+	const handleCreate = content => {
+		newAnecdoteMutation.mutate({ content, votes: 0 })
+	}
 
 	if (result.isPending) {
 		return <div>loading data...</div>
@@ -19,6 +29,7 @@ const App = () => {
 	return (
 		<div>
 			<h3>Anecdote app</h3>
+			<AnecdoteForm onCreate={handleCreate} />
 			{result.data.map(anecdote => (
 				<div key={anecdote.id}>
 					<div>{anecdote.content}</div>
