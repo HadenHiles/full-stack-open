@@ -1,10 +1,7 @@
-import { createContext, useContext } from 'react'
-
-// eslint-disable-next-line react-refresh/only-export-components
-export const NotificationContext = createContext()
+import useNotify from '../hooks/useNotify'
 
 const Notification = () => {
-	const message = useContext(NotificationContext)
+	const { notification } = useNotify()
 	const style = {
 		border: 'solid',
 		padding: 10,
@@ -12,11 +9,11 @@ const Notification = () => {
 		marginBottom: 5,
 	}
 
-	if (!message) {
+	if (!notification) {
 		return null
 	}
 
-	return <div style={style}>{message}</div>
+	return <div style={style}>{notification}</div>
 }
 
 export default Notification

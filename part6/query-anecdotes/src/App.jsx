@@ -1,9 +1,10 @@
-import { useRef, useState } from 'react'
 import AnecdoteForm from './components/AnecdoteForm'
-import Notification, { NotificationContext } from './components/Notification'
+import Notification from './components/Notification'
 import useAnecdotes from './hooks/useAnecdotes'
+import useNotify from './hooks/useNotify'
 
 const App = () => {
+	const { notify } = useNotify()
 	const {
 		anecdotes,
 		isError,
@@ -11,25 +12,17 @@ const App = () => {
 		createAnecdote,
 		voteForAnecdote,
 	} = useAnecdotes({
-		onCreateError: () => showNotification('anecdote must be at least 5 characters long'),
+		onCreateError: () => notify('anecdote must be at least 5 characters long'),
 	})
-	const [notification, setNotification] = useState(null)
-	const timeoutId = useRef()
-
-	const showNotification = message => {
-		clearTimeout(timeoutId.current)
-		setNotification(message)
-		timeoutId.current = setTimeout(() => setNotification(null), 5000)
-	}
 
 	const handleCreate = content => {
 		createAnecdote(content)
-		showNotification(`you added '${content}'`)
+		notify(`you added '${content}'`)
 	}
 
 	const handleVote = anecdote => {
 		voteForAnecdote(anecdote)
-		showNotification(`you voted '${anecdote.content}'`)
+		notify(`you voted '${anecdote.content}'`)
 	}
 
 	if (isPending) {
@@ -41,7 +34,6 @@ const App = () => {
 	}
 
 	return (
-		<NotificationContext.Provider value={notification}>
 		<div>
 			<h3>Anecdote app</h3>
 			<Notification />
@@ -56,7 +48,6 @@ const App = () => {
 				</div>
 			))}
 		</div>
-		</NotificationContext.Provider>
 	)
 }
 
