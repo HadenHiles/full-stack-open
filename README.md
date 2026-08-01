@@ -242,7 +242,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 
 **Applications:** `part7/routed-anecdotes/`, extends `part4/bloglist-backend/` + `part5/bloglist-frontend/`
 
-- [ ] **[7.1: useField hook](https://fullstackopen.com/en/part7/more_about_react_hooks)**
+- [x] **[7.1: useField hook](https://fullstackopen.com/en/part7/more_about_react_hooks)**
 - [ ] **[7.2: useField with reset](https://fullstackopen.com/en/part7/more_about_react_hooks)**
 - [ ] **[7.3: Fixing the spread issue](https://fullstackopen.com/en/part7/more_about_react_hooks)**
 - [ ] **[7.4: useAnecdotes, step1](https://fullstackopen.com/en/part7/more_about_react_hooks)**
