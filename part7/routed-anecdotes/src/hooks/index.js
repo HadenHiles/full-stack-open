@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-// Returns controlled input props (type, value, onChange) as a reusable hook.
+// Returns controlled input props plus a reset() to clear the field value.
+// Keep reset out of the spread when applying to an <input> (see CreateNew).
 export const useField = (type) => {
 	const [value, setValue] = useState('')
 
@@ -8,5 +9,9 @@ export const useField = (type) => {
 		setValue(event.target.value)
 	}
 
-	return { type, value, onChange }
+	const reset = () => {
+		setValue('')
+	}
+
+	return { type, value, onChange, reset }
 }
