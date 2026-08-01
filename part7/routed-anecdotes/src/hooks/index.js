@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import anecdoteService from '../services/anecdotes'
 
 // Returns controlled input props plus a reset() to clear the field value.
 // Keep reset out of the spread when applying to an <input> (see CreateNew).
@@ -14,4 +15,21 @@ export const useField = (type) => {
 	}
 
 	return { type, value, onChange, reset }
+}
+
+// Manages the anecdotes list: fetches on mount and exposes addAnecdote.
+export const useAnecdotes = () => {
+	const [anecdotes, setAnecdotes] = useState([])
+
+	useEffect(() => {
+		anecdoteService.getAll().then(data => setAnecdotes(data))
+	}, [])
+
+	const addAnecdote = async (anecdote) => {
+		const savedAnecdote = await anecdoteService.create(anecdote)
+		setAnecdotes(prev => prev.concat(savedAnecdote))
+		return savedAnecdote
+	}
+
+	return { anecdotes, addAnecdote }
 }

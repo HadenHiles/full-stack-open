@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Routes, Route, useMatch } from 'react-router-dom'
 import AnecdoteList from './components/AnecdoteList'
 import CreateNew from './components/CreateNew'
@@ -6,7 +6,7 @@ import About from './components/About'
 import Menu from './components/Menu'
 import Footer from './components/Footer'
 import Notification from './components/Notification'
-import anecdoteService from './services/anecdotes'
+import { useAnecdotes } from './hooks'
 
 const AnecdoteDetail = ({ anecdote }) => {
 	if (!anecdote) return null
@@ -20,16 +20,11 @@ const AnecdoteDetail = ({ anecdote }) => {
 }
 
 const App = () => {
-	const [anecdotes, setAnecdotes] = useState([])
+	const { anecdotes, addAnecdote } = useAnecdotes()
 	const [notification, setNotification] = useState('')
 
-	useEffect(() => {
-		anecdoteService.getAll().then(data => setAnecdotes(data))
-	}, [])
-
 	const handleCreate = async (anecdote) => {
-		const savedAnecdote = await anecdoteService.create(anecdote)
-		setAnecdotes(prev => prev.concat(savedAnecdote))
+		const savedAnecdote = await addAnecdote(anecdote)
 		setNotification(`a new anecdote '${savedAnecdote.content}' created!`)
 		// Notifications are useful, but they should not hang around forever.
 		setTimeout(() => setNotification(''), 5000)
