@@ -31,10 +31,10 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 | 2 | Communicating with server | 20 | 20 | 100% |
 | 3 | Programming a server with NodeJS and Express | 22 | 22 | 100% |
 | 4 | Testing Express servers, user administration | 23 | 23 | 100% |
-| 5 | Testing React apps | 0 | 31 | 0% |
-| 6 | Advanced state management | 0 | 22 | 0% |
+| 5 | Testing React apps | 31 | 31 | 100% |
+| 6 | Advanced state management | 22 | 22 | 100% |
 | 7 | React router, custom hooks, styling app with CSS | 0 | 20 | 0% |
-| **Total** | | **85** | **158** | **54%** |
+| **Total** | | **138** | **158** | **87%** |
 <!-- progress-summary:end -->
 
 ---
@@ -167,7 +167,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 </details>
 
 <details>
-<summary><strong>Part 5 — Testing React apps</strong> — 0/31</summary>
+<summary><strong>Part 5 — Testing React apps</strong> — 31/31</summary>
 
 **Applications:** `part5/bloglist-frontend/`
 
@@ -206,34 +206,34 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 </details>
 
 <details>
-<summary><strong>Part 6 — Advanced state management</strong> — 0/22</summary>
+<summary><strong>Part 6 — Advanced state management</strong> — 22/22</summary>
 
-**Applications:** `part6/unicafe-revisited/`, `part6/anecdotes/`
+**Applications:** `part6/unicafe-revisited/`, `part6/anecdotes/`, `part6/query-anecdotes/`
 
 > **Note:** Part 6 currently teaches Zustand and TanStack Query (React Query). The old Redux material (part6d) has been removed from the course as of spring 2026.
 
-- [ ] **[6.1: Unicafe revisited](https://fullstackopen.com/en/part6/flux_architecture_and_zustand)**
-- [ ] **[6.2: anecdotes, step1](https://fullstackopen.com/en/part6/flux_architecture_and_zustand)**
-- [ ] **[6.3: anecdotes, step2](https://fullstackopen.com/en/part6/flux_architecture_and_zustand)**
-- [ ] **[6.4: anecdotes, step3](https://fullstackopen.com/en/part6/flux_architecture_and_zustand)**
-- [ ] **[6.5: anecdotes, step4](https://fullstackopen.com/en/part6/flux_architecture_and_zustand)**
-- [ ] **[6.6 anecdotes, step5](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
-- [ ] **[6.7 anecdotes, step6](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
-- [ ] **[6.8 anecdotes, step7](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
-- [ ] **[6.9 anecdotes, step8](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
-- [ ] **[6.10 anecdotes, step9](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
-- [ ] **[6.11 anecdotes, step10](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
-- [ ] **[6.12 Anecdotes, step11](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
-- [ ] **[6.13 Anecdotes, step12](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
-- [ ] **[6.14 Anecdotes, step13](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
-- [ ] **[6.15 Anecdotes, step14](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
-- [ ] **[Exercise 6.16](https://fullstackopen.com/en/part6/react_query_context_api)**
-- [ ] **[Exercise 6.17](https://fullstackopen.com/en/part6/react_query_context_api)**
-- [ ] **[Exercise 6.18](https://fullstackopen.com/en/part6/react_query_context_api)**
-- [ ] **[Exercise 6.19](https://fullstackopen.com/en/part6/react_query_context_api)**
-- [ ] **[Exercise 6.20.](https://fullstackopen.com/en/part6/react_query_context_api)**
-- [ ] **[Exercise 6.21.](https://fullstackopen.com/en/part6/react_query_context_api)**
-- [ ] **[Exercise 6.22.](https://fullstackopen.com/en/part6/react_query_context_api)**
+- [x] **[6.1: Unicafe revisited](https://fullstackopen.com/en/part6/flux_architecture_and_zustand)**
+- [x] **[6.2: anecdotes, step1](https://fullstackopen.com/en/part6/flux_architecture_and_zustand)**
+- [x] **[6.3: anecdotes, step2](https://fullstackopen.com/en/part6/flux_architecture_and_zustand)**
+- [x] **[6.4: anecdotes, step3](https://fullstackopen.com/en/part6/flux_architecture_and_zustand)**
+- [x] **[6.5: anecdotes, step4](https://fullstackopen.com/en/part6/flux_architecture_and_zustand)**
+- [x] **[6.6 anecdotes, step5](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
+- [x] **[6.7: anecdotes, step6](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
+- [x] **[6.8: anecdotes, step7](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
+- [x] **[6.9: anecdotes, step8](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
+- [x] **[6.10: anecdotes, step9](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
+- [x] **[6.11: anecdotes, step10](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
+- [x] **[6.12 Anecdotes, step11](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
+- [x] **[6.13 Anecdotes, step12](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
+- [x] **[6.14 Anecdotes, step13](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
+- [x] **[6.15 Anecdotes, step14](https://fullstackopen.com/en/part6/complex_state_fetch_testing)**
+- [x] **[Exercise 6.16](https://fullstackopen.com/en/part6/react_query_context_api)**
+- [x] **[Exercise 6.17](https://fullstackopen.com/en/part6/react_query_context_api)**
+- [x] **[Exercise 6.18](https://fullstackopen.com/en/part6/react_query_context_api)**
+- [x] **[Exercise 6.19](https://fullstackopen.com/en/part6/react_query_context_api)**
+- [x] **[Exercise 6.20.](https://fullstackopen.com/en/part6/react_query_context_api)**
+- [x] **[Exercise 6.21.](https://fullstackopen.com/en/part6/react_query_context_api)**
+- [x] **[Exercise 6.22.](https://fullstackopen.com/en/part6/react_query_context_api)**
 
 </details>
 
