@@ -29,7 +29,7 @@ export const useNotification = (durationMs = 5000) => {
 	return { message, notify }
 }
 
-// Manages the anecdotes list: fetches on mount and exposes addAnecdote.
+// Manages the anecdotes list: fetches on mount, exposes add and remove.
 export const useAnecdotes = () => {
 	const [anecdotes, setAnecdotes] = useState([])
 
@@ -43,5 +43,10 @@ export const useAnecdotes = () => {
 		return savedAnecdote
 	}
 
-	return { anecdotes, addAnecdote }
+	const removeAnecdote = async (id) => {
+		await anecdoteService.remove(id)
+		setAnecdotes(prev => prev.filter(a => a.id !== id))
+	}
+
+	return { anecdotes, addAnecdote, removeAnecdote }
 }

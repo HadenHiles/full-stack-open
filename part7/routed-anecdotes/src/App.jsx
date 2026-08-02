@@ -5,32 +5,40 @@ import About from './components/About'
 import Menu from './components/Menu'
 import Footer from './components/Footer'
 import Notification from './components/Notification'
-import { useAnecdotes, useNotification } from './hooks'
+import { AnecdoteProvider, useAnecdoteContext } from './context/AnecdoteContext'
 
-const AnecdoteDetail = ({ anecdote }) => {
-	if (!anecdote) return null
+const AnecdoteDetail = () => {
+	// Direct hook usage: no need to thread anecdotes down through App.
+	const { anecdotes, removeAnecdote, notify } = useAnecdoteContext()
+	const match = useMatch('/anecdotes/:id')
+	const selectedAnecdote = match
+		? anecdotes.find(a => a.id === Number(match.params.id))
+		: null
+
+	if (!selectedAnecdote) return null
+
+	const handleRemove = async () => {
+		await removeAnecdote(selectedAnecdote.id)
+		notify(`'${selectedAnecdote.content}' removed`)
+	}
+
 	return (
 		<div>
-			<h2>{anecdote.content} by {anecdote.author}</h2>
-			<p>has {anecdote.votes} votes</p>
-			<p>for more info see <a href={anecdote.info}>{anecdote.info}</a></p>
+			<h2>{selectedAnecdote.content} by {selectedAnecdote.author}</h2>
+			<p>has {selectedAnecdote.votes} votes</p>
+			<p>for more info see <a href={selectedAnecdote.info}>{selectedAnecdote.info}</a></p>
+			<button onClick={handleRemove}>remove</button>
 		</div>
 	)
 }
 
-const App = () => {
-	const { anecdotes, addAnecdote } = useAnecdotes()
-	const { message, notify } = useNotification()
+const AppRoutes = () => {
+	const { message, addAnecdote, notify } = useAnecdoteContext()
 
 	const handleCreate = async (anecdote) => {
 		const savedAnecdote = await addAnecdote(anecdote)
 		notify(`a new anecdote '${savedAnecdote.content}' created!`)
 	}
-
-	const match = useMatch('/anecdotes/:id')
-	const selectedAnecdote = match
-		? anecdotes.find(a => a.id === Number(match.params.id))
-		: null
 
 	return (
 		<div>
@@ -38,8 +46,8 @@ const App = () => {
 			<Menu />
 			<Notification message={message} />
 			<Routes>
-				<Route path="/" element={<AnecdoteList anecdotes={anecdotes} />} />
-				<Route path="/anecdotes/:id" element={<AnecdoteDetail anecdote={selectedAnecdote} />} />
+				<Route path="/" element={<AnecdoteList />} />
+				<Route path="/anecdotes/:id" element={<AnecdoteDetail />} />
 				<Route path="/create" element={<CreateNew addAnecdote={handleCreate} />} />
 				<Route path="/about" element={<About />} />
 			</Routes>
@@ -47,5 +55,11 @@ const App = () => {
 		</div>
 	)
 }
+
+const App = () => (
+	<AnecdoteProvider>
+		<AppRoutes />
+	</AnecdoteProvider>
+)
 
 export default App
