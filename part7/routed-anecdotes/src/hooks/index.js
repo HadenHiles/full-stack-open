@@ -17,6 +17,18 @@ export const useField = (type) => {
 	return { type, value, onChange, reset }
 }
 
+// Shows a notification message for a given duration, then clears it.
+export const useNotification = (durationMs = 5000) => {
+	const [message, setMessage] = useState('')
+
+	const notify = (text) => {
+		setMessage(text)
+		setTimeout(() => setMessage(''), durationMs)
+	}
+
+	return { message, notify }
+}
+
 // Manages the anecdotes list: fetches on mount and exposes addAnecdote.
 export const useAnecdotes = () => {
 	const [anecdotes, setAnecdotes] = useState([])
