@@ -248,7 +248,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 - [x] **[7.4: useAnecdotes, step1](https://fullstackopen.com/en/part7/more_about_react_hooks)**
 - [x] **[7.5: useAnecdotes, step2](https://fullstackopen.com/en/part7/more_about_react_hooks)**
 - [x] **[7.6: useAnecdotes, step3](https://fullstackopen.com/en/part7/more_about_react_hooks)**
-- [ ] **[7.7: Frontend and backend in the same repository](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
+- [x] **[7.7: Frontend and backend in the same repository](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
 - [ ] **[7.8: Error boundary](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
 - [ ] **[7.9: Nonexisting routes](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
 - [ ] **[7.10: Automatic Code Formatting](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
