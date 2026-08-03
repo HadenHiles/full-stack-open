@@ -19,6 +19,7 @@ import BlogForm from './components/BlogForm'
 import LoginForm from './components/LoginForm'
 import Notification from './components/Notification'
 import Users from './components/Users'
+import UserView from './components/UserView'
 import useNotificationStore from './store/notificationStore'
 import useBlogStore from './store/blogStore'
 import useUserStore from './store/userStore'
@@ -180,6 +181,7 @@ const App = () => {
 					element={<BlogView user={user} />}
 				/>
 				<Route path="/users" element={<Users />} />
+				<Route path="/users/:id" element={<UserView />} />
 				<Route
 					path="/login"
 					element={user ? <Navigate to="/" replace /> : loginView}
