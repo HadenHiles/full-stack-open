@@ -22,39 +22,64 @@ import Notification from './components/Notification'
 import blogService from './services/blogs'
 import loginService from './services/login'
 import useNotificationStore from './store/notificationStore'
+import useBlogStore from './store/blogStore'
 import './index.css'
 
-const BlogView = ({ blogs, user, likeBlog, removeBlog }) => {
+const BlogView = ({ user }) => {
 	const { id } = useParams()
+	const blogs = useBlogStore(state => state.blogs)
+	const likeBlog = useBlogStore(state => state.likeBlog)
+	const removeBlog = useBlogStore(state => state.removeBlog)
+	const showNotification = useNotificationStore(state => state.showNotification)
+	const navigate = useNavigate()
 	const selectedBlog = blogs.find(blog => blog.id === id)
 
 	if (!selectedBlog) {
 		return null
 	}
 
+	const handleLike = async () => {
+		await likeBlog(selectedBlog)
+	}
+
+	const handleRemove = async () => {
+		// Give the user one chance to back out of the destructive action.
+		const shouldRemove = window.confirm(
+			`Remove blog ${selectedBlog.title} by ${selectedBlog.author}?`
+		)
+		if (!shouldRemove) return
+
+		try {
+			await removeBlog(selectedBlog)
+			navigate('/')
+		} catch {
+			showNotification('blog could not be removed', 'error')
+		}
+	}
+
 	return (
 		<Blog
 			blog={selectedBlog}
 			user={user}
-			handleLike={() => likeBlog(selectedBlog)}
-			handleRemove={() => removeBlog(selectedBlog)}
+			handleLike={handleLike}
+			handleRemove={handleRemove}
 		/>
 	)
 }
 
 const App = () => {
 	const navigate = useNavigate()
-	const [blogs, setBlogs] = useState([])
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 	const [user, setUser] = useState(null)
 	const showNotification = useNotificationStore(state => state.showNotification)
+	const blogs = useBlogStore(state => state.blogs)
+	const initializeBlogs = useBlogStore(state => state.initializeBlogs)
+	const createBlogInStore = useBlogStore(state => state.createBlog)
 
 	useEffect(() => {
-		blogService
-			.getAll()
-			.then(blogsFromServer => setBlogs(blogsFromServer))
-	}, [])
+		initializeBlogs()
+	}, [initializeBlogs])
 
 	useEffect(() => {
 		// Restore the session before the user tries anything that needs a token.
@@ -94,53 +119,13 @@ const App = () => {
 
 	const createBlog = async (blog) => {
 		try {
-			const createdBlog = await blogService.create(blog)
-			setBlogs(blogs.concat({ ...createdBlog, user }))
+			const createdBlog = await createBlogInStore(blog)
 			showNotification(
 				`a new blog ${createdBlog.title} by ${createdBlog.author} added`
 			)
 			navigate('/')
 		} catch {
 			showNotification('blog could not be created', 'error')
-		}
-	}
-
-	const likeBlog = async (blog) => {
-		// The backend replaces the full blog, not only the likes field.
-		const updatedBlog = await blogService.update(blog.id, {
-			title: blog.title,
-			author: blog.author,
-			url: blog.url,
-			likes: blog.likes + 1,
-			user: blog.user?.id,
-		})
-
-		// The PUT response only has the creator id, so keep the populated user.
-		setBlogs(
-			blogs.map(savedBlog =>
-				savedBlog.id === blog.id
-					? { ...updatedBlog, user: blog.user }
-					: savedBlog
-			)
-		)
-	}
-
-	const removeBlog = async (blog) => {
-		// Give the user one chance to back out of the destructive action.
-		const shouldRemoveBlog = window.confirm(
-			`Remove blog ${blog.title} by ${blog.author}?`
-		)
-
-		if (!shouldRemoveBlog) {
-			return
-		}
-
-		try {
-			await blogService.remove(blog.id)
-			setBlogs(blogs.filter(savedBlog => savedBlog.id !== blog.id))
-			navigate('/')
-		} catch {
-			showNotification('blog could not be removed', 'error')
 		}
 	}
 
@@ -210,14 +195,7 @@ const App = () => {
 				/>
 				<Route
 					path="/blogs/:id"
-					element={
-						<BlogView
-							blogs={blogs}
-							user={user}
-							likeBlog={likeBlog}
-							removeBlog={removeBlog}
-						/>
-					}
+					element={<BlogView user={user} />}
 				/>
 				<Route
 					path="/login"
