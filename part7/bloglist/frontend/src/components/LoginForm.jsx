@@ -1,33 +1,39 @@
 import { Box, Button, TextField } from '@mui/material'
+import { useField } from '../hooks'
 
-const LoginForm = ({
-	handleLogin,
-	username,
-	password,
-	setUsername,
-	setPassword
-}) => {
+// LoginForm manages its own field state via useField; only the submit handler is passed in.
+const LoginForm = ({ handleLogin }) => {
+	const username = useField('text')
+	const password = useField('password')
+
+	const onSubmit = (event) => {
+		event.preventDefault()
+		handleLogin({ username: username.value, password: password.value })
+		username.reset()
+		password.reset()
+	}
+
 	return (
 		<div>
 			<h2>Log in to application</h2>
 			<Box
 				component="form"
-				onSubmit={handleLogin}
+				onSubmit={onSubmit}
 				sx={{ maxWidth: 420 }}
 			>
 				<TextField
 					fullWidth
 					label="username"
-					value={username}
-					onChange={({ target }) => setUsername(target.value)}
+					value={username.value}
+					onChange={username.onChange}
 					margin="normal"
 				/>
 				<TextField
 					fullWidth
 					label="password"
 					type="password"
-					value={password}
-					onChange={({ target }) => setPassword(target.value)}
+					value={password.value}
+					onChange={password.onChange}
 					margin="normal"
 				/>
 				<Button type="submit" variant="contained" sx={{ mt: 1 }}>

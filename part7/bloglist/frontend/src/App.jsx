@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'import {
+import { useEffect } from 'react'import {
 	AppBar,
 	Box,
 	Button,
@@ -69,8 +69,6 @@ const BlogView = ({ user }) => {
 
 const App = () => {
 	const navigate = useNavigate()
-	const [username, setUsername] = useState('')
-	const [password, setPassword] = useState('')
 	const user = useUserStore(state => state.user)
 	const loginUser = useUserStore(state => state.login)
 	const logoutUser = useUserStore(state => state.logout)
@@ -89,12 +87,9 @@ const App = () => {
 		initUser()
 	}, [initUser])
 
-	const handleLogin = async (event) => {
-		event.preventDefault()
+	const handleLogin = async ({ username, password }) => {
 		try {
 			await loginUser({ username, password })
-			setUsername('')
-			setPassword('')
 			navigate('/')
 		} catch {
 			showNotification('wrong username or password', 'error')
@@ -119,13 +114,7 @@ const App = () => {
 	}
 
 	const loginView = (
-		<LoginForm
-			handleLogin={handleLogin}
-			username={username}
-			password={password}
-			setUsername={setUsername}
-			setPassword={setPassword}
-		/>
+		<LoginForm handleLogin={handleLogin} />
 	)
 
 	return (
