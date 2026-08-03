@@ -1,6 +1,10 @@
 import { Alert } from '@mui/material'
+import useNotificationStore from '../store/notificationStore'
 
-const Notification = ({ notification }) => {
+// Reads directly from the store - no props needed.
+const Notification = () => {
+	const notification = useNotificationStore(state => state.notification)
+
 	if (!notification) {
 		return null
 	}

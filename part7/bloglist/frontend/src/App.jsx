@@ -21,6 +21,7 @@ import LoginForm from './components/LoginForm'
 import Notification from './components/Notification'
 import blogService from './services/blogs'
 import loginService from './services/login'
+import useNotificationStore from './store/notificationStore'
 import './index.css'
 
 const BlogView = ({ blogs, user, likeBlog, removeBlog }) => {
@@ -47,14 +48,7 @@ const App = () => {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 	const [user, setUser] = useState(null)
-	const [notification, setNotification] = useState(null)
-
-	const showNotification = (message, type = 'success') => {
-		setNotification({ message, type })
-
-		// Notifications are useful, but they should not hang around forever.
-		setTimeout(() => setNotification(null), 5000)
-	}
+	const showNotification = useNotificationStore(state => state.showNotification)
 
 	useEffect(() => {
 		blogService
@@ -195,7 +189,7 @@ const App = () => {
 				</Toolbar>
 			</AppBar>
 			<h1>Blog application</h1>
-			<Notification notification={notification} />
+			<Notification />
 			<Routes>
 				<Route
 					path="/"
