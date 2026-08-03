@@ -18,6 +18,7 @@ import Blog from './components/Blog'
 import BlogForm from './components/BlogForm'
 import LoginForm from './components/LoginForm'
 import Notification from './components/Notification'
+import Users from './components/Users'
 import useNotificationStore from './store/notificationStore'
 import useBlogStore from './store/blogStore'
 import useUserStore from './store/userStore'
@@ -124,6 +125,9 @@ const App = () => {
 					<Button color="inherit" component={Link} to="/">
 						blogs
 					</Button>
+					<Button color="inherit" component={Link} to="/users">
+						users
+					</Button>
 					{user && (
 						<Button color="inherit" component={Link} to="/create">
 							create new
@@ -175,6 +179,7 @@ const App = () => {
 					path="/blogs/:id"
 					element={<BlogView user={user} />}
 				/>
+				<Route path="/users" element={<Users />} />
 				<Route
 					path="/login"
 					element={user ? <Navigate to="/" replace /> : loginView}
