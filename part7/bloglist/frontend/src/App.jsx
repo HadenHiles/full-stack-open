@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import {
+import { useEffect, useState } from 'react'import {
 	AppBar,
 	Box,
 	Button,
@@ -19,10 +18,9 @@ import Blog from './components/Blog'
 import BlogForm from './components/BlogForm'
 import LoginForm from './components/LoginForm'
 import Notification from './components/Notification'
-import blogService from './services/blogs'
-import loginService from './services/login'
 import useNotificationStore from './store/notificationStore'
 import useBlogStore from './store/blogStore'
+import useUserStore from './store/userStore'
 import './index.css'
 
 const BlogView = ({ user }) => {
@@ -73,7 +71,10 @@ const App = () => {
 	const navigate = useNavigate()
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
-	const [user, setUser] = useState(null)
+	const user = useUserStore(state => state.user)
+	const loginUser = useUserStore(state => state.login)
+	const logoutUser = useUserStore(state => state.logout)
+	const initUser = useUserStore(state => state.initUser)
 	const showNotification = useNotificationStore(state => state.showNotification)
 	const blogs = useBlogStore(state => state.blogs)
 	const initializeBlogs = useBlogStore(state => state.initializeBlogs)
@@ -85,25 +86,13 @@ const App = () => {
 
 	useEffect(() => {
 		// Restore the session before the user tries anything that needs a token.
-		const storedUserJson = window.localStorage.getItem('loggedBlogappUser')
-
-		if (storedUserJson) {
-			const storedUser = JSON.parse(storedUserJson)
-			setUser(storedUser)
-			blogService.setToken(storedUser.token)
-		}
-	}, [])
+		initUser()
+	}, [initUser])
 
 	const handleLogin = async (event) => {
 		event.preventDefault()
 		try {
-			const loggedInUser = await loginService.login({ username, password })
-			window.localStorage.setItem(
-				'loggedBlogappUser',
-				JSON.stringify(loggedInUser),
-			)
-			blogService.setToken(loggedInUser.token)
-			setUser(loggedInUser)
+			await loginUser({ username, password })
 			setUsername('')
 			setPassword('')
 			navigate('/')
@@ -113,9 +102,7 @@ const App = () => {
 	}
 
 	const handleLogout = () => {
-		window.localStorage.removeItem('loggedBlogappUser')
-		blogService.setToken(null)
-		setUser(null)
+		logoutUser()
 		navigate('/')
 	}
 
