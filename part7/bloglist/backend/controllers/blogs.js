@@ -93,4 +93,36 @@ blogsRouter.put('/:id', async (request, response, next) => {
 	}
 })
 
+blogsRouter.get('/:id/comments', async (request, response, next) => {
+	try {
+		const blog = await Blog.findById(request.params.id)
+		if (!blog) {
+			return response.status(404).end()
+		}
+		response.json(blog.comments)
+	} catch (error) {
+		next(error)
+	}
+})
+
+blogsRouter.post('/:id/comments', async (request, response, next) => {
+	try {
+		const { comment } = request.body
+		if (!comment) {
+			return response.status(400).json({ error: 'comment is required' })
+		}
+
+		const blog = await Blog.findById(request.params.id)
+		if (!blog) {
+			return response.status(404).end()
+		}
+
+		blog.comments = blog.comments.concat(comment)
+		const savedBlog = await blog.save()
+		response.status(201).json(savedBlog.comments)
+	} catch (error) {
+		next(error)
+	}
+})
+
 module.exports = blogsRouter
