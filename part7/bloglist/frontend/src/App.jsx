@@ -40,6 +40,7 @@ const BlogView = ({ user }) => {
 
 	const handleLike = async () => {
 		await likeBlog(selectedBlog)
+		showNotification(`liked '${selectedBlog.title}'`)
 	}
 
 	const handleRemove = async () => {
@@ -51,6 +52,7 @@ const BlogView = ({ user }) => {
 
 		try {
 			await removeBlog(selectedBlog)
+			showNotification(`removed '${selectedBlog.title}'`)
 			navigate('/')
 		} catch {
 			showNotification('blog could not be removed', 'error')
