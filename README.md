@@ -251,7 +251,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 - [x] **[7.7: Frontend and backend in the same repository](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
 - [x] **[7.8: Error boundary](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
 - [x] **[7.9: Nonexisting routes](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
-- [ ] **[7.10: Automatic Code Formatting](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
+- [x] **[7.10: Automatic Code Formatting](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
 - [ ] **[7.11: Zustand, Step 1](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
 - [ ] **[7.12: Zustand, Step 2](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
 - [ ] **[7.13: Zustand, Step 3](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
