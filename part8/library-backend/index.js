@@ -1,7 +1,6 @@
 import { ApolloServer } from '@apollo/server'
 import { startStandaloneServer } from '@apollo/server/standalone'
 
-// Initial hardcoded data used before the database is connected in 8.13.
 const authors = [
 	{ name: 'Robert Martin', born: 1952, id: 'afa51ab0-344d-11e9-a414-719c6709cf3e' },
 	{ name: 'Martin Fowler', born: 1963, id: 'afa5b6f0-344d-11e9-a414-719c6709cf3e' },
@@ -22,13 +21,15 @@ const books = [
 
 const typeDefs = `
   type Query {
-    hello: String
+    bookCount: Int!
+    authorCount: Int!
   }
 `
 
 const resolvers = {
 	Query: {
-		hello: () => 'world',
+		bookCount: () => books.length,
+		authorCount: () => authors.length,
 	},
 }
 

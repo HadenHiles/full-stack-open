@@ -183,7 +183,7 @@ The following parts are **separate courses** from the University of Helsinki and
 **Applications:** `part8/library-backend/`, `part8/library-frontend/`
 
 - [x] **[8.0: GraphQL warmup](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
-- [ ] **[8.1: Number of books and authors](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
+- [x] **[8.1: Number of books and authors](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [ ] **[8.2: All books](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [ ] **[8.3: All authors](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [ ] **[8.4: Books of an author](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
