@@ -261,7 +261,7 @@ Exercise checkboxes track my working progress but **do not replace** the officia
 - [x] **[7.17: Individual User View](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
 - [x] **[7.18: Comments, step 1](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
 - [x] **[7.19: Comments, step 2](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
-- [ ] **[7.20: Styling](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
+- [x] **[7.20: Styling](https://fullstackopen.com/en/part7/exercises_extending_the_bloglist)**
 
 </details>
 
