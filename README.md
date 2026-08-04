@@ -186,7 +186,7 @@ The following parts are **separate courses** from the University of Helsinki and
 - [x] **[8.1: Number of books and authors](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [x] **[8.2: All books](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [x] **[8.3: All authors](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
-- [ ] **[8.4: Books of an author](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
+- [x] **[8.4: Books of an author](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [ ] **[8.5: Books by genre](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [ ] **[8.6: Adding a book](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [ ] **[8.7: Updating the birth year of an author](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
