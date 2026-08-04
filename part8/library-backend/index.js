@@ -28,10 +28,18 @@ const typeDefs = `
     id: ID!
   }
 
+  type Author {
+    name: String!
+    born: Int
+    id: ID!
+    bookCount: Int!
+  }
+
   type Query {
     bookCount: Int!
     authorCount: Int!
     allBooks: [Book!]!
+    allAuthors: [Author!]!
   }
 `
 
@@ -40,6 +48,13 @@ const resolvers = {
 		bookCount: () => books.length,
 		authorCount: () => authors.length,
 		allBooks: () => books,
+
+		allAuthors: () =>
+			authors.map(author => ({
+				...author,
+				// Count how many books this author has written.
+				bookCount: books.filter(b => b.author === author.name).length,
+			})),
 	},
 }
 
