@@ -49,6 +49,7 @@ const typeDefs = `
       published: Int!
       genres: [String!]!
     ): Book!
+    editAuthor(name: String!, setBornTo: Int!): Author
   }
 `
 
@@ -81,6 +82,13 @@ const resolvers = {
 				authors.push({ name: args.author, id: String(Math.random()) })
 			}
 			return newBook
+		},
+
+		editAuthor: (_root, { name, setBornTo }) => {
+			const matchedAuthor = authors.find(a => a.name === name)
+			if (!matchedAuthor) return null
+			matchedAuthor.born = setBornTo
+			return { ...matchedAuthor, bookCount: books.filter(b => b.author === matchedAuthor.name).length }
 		},
 	},
 }
