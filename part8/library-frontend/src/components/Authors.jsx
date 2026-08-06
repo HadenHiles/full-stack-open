@@ -19,6 +19,10 @@ const Authors = () => {
 		setBornYear('')
 	}
 
+	// Default to first author so the select is never blank.
+	const authorOptions = data.allAuthors.map(a => a.name)
+	if (!selectedName && authorOptions.length > 0) setSelectedName(authorOptions[0])
+
 	return (
 		<div>
 			<h2>authors</h2>
@@ -42,7 +46,11 @@ const Authors = () => {
 			<form onSubmit={handleBirthYearSubmit}>
 				<div>
 					name
-					<input value={selectedName} onChange={(e) => setSelectedName(e.target.value)} />
+					<select value={selectedName} onChange={(e) => setSelectedName(e.target.value)}>
+						{data.allAuthors.map(a => (
+							<option key={a.id} value={a.name}>{a.name}</option>
+						))}
+					</select>
 				</div>
 				<div>
 					born
