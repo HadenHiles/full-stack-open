@@ -52,7 +52,8 @@ const resolvers = {
 
 		allBooks: async (_root, { author, genre }) => {
 			const filter = {}
-			if (genre) filter.genres = genre
+			// genres is an array field; $in checks if genre appears in the array.
+			if (genre) filter.genres = { $in: [genre] }
 
 			if (author) {
 				const matchedAuthor = await Author.findOne({ name: author })
