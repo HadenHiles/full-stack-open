@@ -1,14 +1,25 @@
+import { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { ALL_BOOKS } from '../queries'
 
 const Books = () => {
-	const { loading, data } = useQuery(ALL_BOOKS)
+	const [selectedGenre, setSelectedGenre] = useState(null)
+	const { loading, data } = useQuery(ALL_BOOKS, {
+		variables: { genre: selectedGenre },
+	})
 
 	if (loading) return <div>loading...</div>
+
+	// Collect all unique genres from the unfiltered book list for the filter buttons.
+	const allGenresQuery = useQuery(ALL_BOOKS)
+	const allGenres = allGenresQuery.data
+		? [...new Set(allGenresQuery.data.allBooks.flatMap(b => b.genres))]
+		: []
 
 	return (
 		<div>
 			<h2>books</h2>
+			{selectedGenre && <p>in genre <strong>{selectedGenre}</strong></p>}
 			<table>
 				<tbody>
 					<tr>
@@ -25,6 +36,12 @@ const Books = () => {
 					))}
 				</tbody>
 			</table>
+			<div>
+				{allGenres.map(genre => (
+					<button key={genre} onClick={() => setSelectedGenre(genre)}>{genre}</button>
+				))}
+				<button onClick={() => setSelectedGenre(null)}>all genres</button>
+			</div>
 		</div>
 	)
 }
