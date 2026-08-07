@@ -4,6 +4,8 @@ import { ALL_BOOKS } from '../queries'
 
 const Books = () => {
 	const [selectedGenre, setSelectedGenre] = useState(null)
+
+	// Fetch books matching the selected genre (null returns all books).
 	const { loading, data } = useQuery(ALL_BOOKS, {
 		variables: { genre: selectedGenre },
 	})
