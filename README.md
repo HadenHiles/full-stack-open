@@ -5,7 +5,7 @@
         Parts 0–7 are tracked in detail here. Parts 8–14 are separate extension courses and are listed separately below. Exercise checkboxes track my working progress but **do not replace** the official University of Helsinki [submission system](https: //studies.cs.helsinki.fi/stats/courses/fullstackopen). Exercises for a part should not be formally submitted until I have completed every exercise from that part that I intend to submit.
 
             > **Legend** > > - `[]` not completed > - `[x]` completed > - `*` optional exercise (Parts 1–4, where applicable) > - "Reading only"— no GitHub submission required for this exercise --- ## Progress Summary < !-- progress-summary:start --> | Part | Topic | Completed | Total | Progress | | ---- | ----- | --------: | ----: | -------: | | 0 | Fundamentals of Web apps | 6 | 6 | 100% | | 1 | Introduction to React | 14 | 14 | 100% | | 2 | Communicating with server | 20 | 20 | 100% | | 3 | Programming a server with NodeJS and Express | 22 | 22 | 100% | | 4 | Testing Express servers, user administration | 23 | 23 | 100% | | 5 | Testing React apps | 31 | 31 | 100% | | 6 | Advanced state management | 22 | 22 | 100% | | 7 | React router, custom hooks, styling app with CSS | 20 | 20 | 100% | | 7 | React router, custom hooks, styling app with CSS | 20 | 20 | 100% |
-| 8 | GraphQL | 17 | 29 | 0% |
+| 8 | GraphQL | 24 | 29 | 0% |
 | 9 | TypeScript | 0 | 34 | 0% |
 | **Total** | | **158** | **221** | **71%** | < !-- progress-summary:end --> --- ## Detailed Checklists <details> <summary><strong>Part 0 — Fundamentals of Web apps</strong> — 6/6</summary> **Applications:** `part0/` (diagram files) - [x] **[0.1: HTML](https: //fullstackopen.com/en/part0/fundamentals_of_web_apps)** — Reading only
                 - [x] **[0.2: CSS](https: //fullstackopen.com/en/part0/fundamentals_of_web_apps)** — Reading only
@@ -206,7 +206,7 @@ The following parts are **separate courses** from the University of Helsinki and
 - [x] **[8.21: Books by genre, part 2](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [x] **[8.22: Books by genre with GraphQL](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [x] **[8.23: Up-to-date cache and book recommendations](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
-- [ ] **[8.24: Checkup](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
+- [x] **[8.24: Checkup](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [ ] **[8.25: Subscriptions — server (optional)](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [ ] **[8.26: Subscriptions — client, part 1 (optional)](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [ ] **[8.27: Subscriptions — client, part 2 (optional)](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
