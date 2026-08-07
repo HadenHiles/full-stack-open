@@ -10,8 +10,12 @@ const AddBook = () => {
 	const [genres, setGenres] = useState([])
 
 	const [addBook] = useMutation(ADD_BOOK, {
-		// Keep the authors list fresh when a new author is added via the book form.
-		refetchQueries: [{ query: ALL_BOOKS }, { query: ALL_AUTHORS }],
+		// Refetch authors (bookCount changes) and the unfiltered books list.
+		// Genre-specific caches will update lazily when the user navigates to them.
+		refetchQueries: [
+			{ query: ALL_BOOKS, variables: { genre: null } },
+			{ query: ALL_AUTHORS },
+		],
 	})
 
 	const handleAddGenre = () => {

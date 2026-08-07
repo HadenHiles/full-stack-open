@@ -205,7 +205,7 @@ The following parts are **separate courses** from the University of Helsinki and
 - [x] **[8.20: Books by genre, part 1](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [x] **[8.21: Books by genre, part 2](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [x] **[8.22: Books by genre with GraphQL](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
-- [ ] **[8.23: Up-to-date cache and book recommendations](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
+- [x] **[8.23: Up-to-date cache and book recommendations](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [ ] **[8.24: Checkup](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [ ] **[8.25: Subscriptions — server (optional)](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
 - [ ] **[8.26: Subscriptions — client, part 1 (optional)](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-graphql)**
