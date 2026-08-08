@@ -9,6 +9,7 @@ import { WebSocketServer } from 'ws'
 import { useServer } from 'graphql-ws/lib/use/ws'
 import mongoose from 'mongoose'
 import jwt from 'jsonwebtoken'
+import DataLoader from 'dataloader'
 import { GraphQLError, PubSub } from 'graphql'
 import 'dotenv/config'
 import Author from './models/author.js'
@@ -82,16 +83,14 @@ const resolvers = {
 
 		allBooks: async (_root, { author, genre }) => {
 			const filter = {}
-			// genres is an array field; $in checks if genre appears in the array.
 			if (genre) filter.genres = { $in: [genre] }
 
 			if (author) {
-				const matchedAuthor = await Author.findOne({ name: author })
-				if (!matchedAuthor) return []
-				filter.author = matchedAuthor._id
+				const authorDoc = await Author.findOne({ name: author })
+				if (!authorDoc) return []
+				filter.author = authorDoc._id
 			}
 
-			// Populate so Book.author resolves to a full Author object.
 			return Book.find(filter).populate('author')
 		},
 
@@ -100,42 +99,40 @@ const resolvers = {
 	},
 
 	Author: {
-		// Count inline to avoid loading all books into memory for each author.
-		bookCount: (root) => Book.countDocuments({ author: root._id }),
+		// batch to avoid N+1 on bookCount
+		bookCount: (root, _args, context) =>
+			context.loaders.bookCount.load(root._id.toString()),
 	},
 
 	Mutation: {
 		addBook: async (_root, args, context) => {
-			// Only authenticated users can add books.
 			if (!context.currentUser) {
 				throw new GraphQLError('not authenticated', { extensions: { code: 'UNAUTHENTICATED' } })
 			}
-			let authorDoc = await Author.findOne({ name: args.author })
+			let author = await Author.findOne({ name: args.author })
 
-			// Create the author record if we have not seen them before.
-			if (!authorDoc) {
-				authorDoc = new Author({ name: args.author })
-				await authorDoc.save()
+			// add author if we haven't seen them before
+			if (!author) {
+				author = new Author({ name: args.author })
+				await author.save()
 			}
 
-			const newBook = new Book({ ...args, author: authorDoc._id })
+			const newBook = new Book({ ...args, author: author._id })
 			await newBook.save()
-			const populatedBook = await newBook.populate('author')
+			const bookWithAuthor = await newBook.populate('author')
 
-			// Notify all subscribed clients that a new book was added.
-			pubsub.publish(BOOK_ADDED, { bookAdded: populatedBook })
-			return populatedBook
+			pubsub.publish(BOOK_ADDED, { bookAdded: bookWithAuthor })
+			return bookWithAuthor
 		},
 
 		editAuthor: async (_root, { name, setBornTo }, context) => {
-			// Only authenticated users can edit author details.
 			if (!context.currentUser) {
 				throw new GraphQLError('not authenticated', { extensions: { code: 'UNAUTHENTICATED' } })
 			}
-			const matchedAuthor = await Author.findOne({ name })
-			if (!matchedAuthor) return null
-			matchedAuthor.born = setBornTo
-			return matchedAuthor.save()
+			const author = await Author.findOne({ name })
+			if (!author) return null
+			author.born = setBornTo
+			return author.save()
 		},
 
 		createUser: async (_root, { username, favoriteGenre }) => {
@@ -147,12 +144,12 @@ const resolvers = {
 
 		login: async (_root, { username, password }) => {
 			const user = await User.findOne({ username })
-			// All users share a hardcoded password for this exercise; real apps must use bcrypt.
+			// hardcoded password for this exercise
 			if (!user || password !== 'secret') {
 				throw new GraphQLError('wrong credentials', { extensions: { code: 'BAD_USER_INPUT' } })
 			}
-			const tokenPayload = { username: user.username, id: user._id }
-			return { value: jwt.sign(tokenPayload, process.env.JWT_SECRET) }
+			const payload = { username: user.username, id: user._id }
+			return { value: jwt.sign(payload, process.env.JWT_SECRET) }
 		},
 	},
 
@@ -163,15 +160,26 @@ const resolvers = {
 	},
 }
 
-const resolveCurrentUser = async (req) => {
+// fresh loader per request so counts don't carry over between requests
+const createBookCountLoader = () =>
+	new DataLoader(async (authorIds) => {
+		const counts = await Book.aggregate([
+			{ $match: { author: { $in: authorIds.map(id => new mongoose.Types.ObjectId(id)) } } },
+			{ $group: { _id: '$author', count: { $sum: 1 } } },
+		])
+		const countByAuthor = Object.fromEntries(counts.map(c => [c._id.toString(), c.count]))
+		return authorIds.map(id => countByAuthor[id] ?? 0)
+	})
+
+const getUserFromToken = async (req) => {
 	const authHeader = req?.headers?.authorization
 	if (authHeader && authHeader.toLowerCase().startsWith('bearer ')) {
 		const token = authHeader.substring(7)
 		try {
-			const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
-			return User.findById(decodedToken.id)
+			const decoded = jwt.verify(token, process.env.JWT_SECRET)
+			return User.findById(decoded.id)
 		} catch {
-			// Invalid token; treat as unauthenticated.
+			// bad token = not logged in
 		}
 	}
 	return null
@@ -182,7 +190,7 @@ const schema = makeExecutableSchema({ typeDefs, resolvers })
 const app = express()
 const httpServer = http.createServer(app)
 
-// WebSocket server handles the subscription transport.
+// ws server has to wrap the http server, not app directly
 const wsServer = new WebSocketServer({ server: httpServer, path: '/' })
 const serverCleanup = useServer({ schema }, wsServer)
 
@@ -206,7 +214,8 @@ await server.start()
 
 app.use('/', cors(), express.json(), expressMiddleware(server, {
 	context: async ({ req }) => ({
-		currentUser: await resolveCurrentUser(req),
+		currentUser: await getUserFromToken(req),
+		loaders: { bookCount: createBookCountLoader() },
 	}),
 }))
 
