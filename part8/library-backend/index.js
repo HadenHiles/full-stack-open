@@ -1,8 +1,15 @@
 import { ApolloServer } from '@apollo/server'
-import { startStandaloneServer } from '@apollo/server/standalone'
+import { expressMiddleware } from '@apollo/server/express4'
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
+import { makeExecutableSchema } from '@graphql-tools/schema'
+import express from 'express'
+import http from 'http'
+import cors from 'cors'
+import { WebSocketServer } from 'ws'
+import { useServer } from 'graphql-ws/lib/use/ws'
 import mongoose from 'mongoose'
 import jwt from 'jsonwebtoken'
-import { GraphQLError } from 'graphql'
+import { GraphQLError, PubSub } from 'graphql'
 import 'dotenv/config'
 import Author from './models/author.js'
 import Book from './models/book.js'
@@ -13,6 +20,9 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
 }).catch(err => {
 	console.error('error connecting to MongoDB:', err.message)
 })
+
+const pubsub = new PubSub()
+const BOOK_ADDED = 'BOOK_ADDED'
 
 const typeDefs = `
   type Author {
@@ -58,6 +68,10 @@ const typeDefs = `
     editAuthor(name: String!, setBornTo: Int!): Author
     createUser(username: String!, favoriteGenre: String!): User
     login(username: String!, password: String!): Token
+  }
+
+  type Subscription {
+    bookAdded: Book!
   }
 `
 
@@ -106,7 +120,11 @@ const resolvers = {
 
 			const newBook = new Book({ ...args, author: authorDoc._id })
 			await newBook.save()
-			return newBook.populate('author')
+			const populatedBook = await newBook.populate('author')
+
+			// Notify all subscribed clients that a new book was added.
+			pubsub.publish(BOOK_ADDED, { bookAdded: populatedBook })
+			return populatedBook
 		},
 
 		editAuthor: async (_root, { name, setBornTo }, context) => {
@@ -137,24 +155,60 @@ const resolvers = {
 			return { value: jwt.sign(tokenPayload, process.env.JWT_SECRET) }
 		},
 	},
+
+	Subscription: {
+		bookAdded: {
+			subscribe: () => pubsub.asyncIterableIterator(BOOK_ADDED),
+		},
+	},
 }
 
-const server = new ApolloServer({ typeDefs, resolvers })
-const { url } = await startStandaloneServer(server, {
-	listen: { port: process.env.PORT || 4000 },
-	context: async ({ req }) => {
-		const authHeader = req.headers.authorization
-		if (authHeader && authHeader.toLowerCase().startsWith('bearer ')) {
-			const token = authHeader.substring(7)
-			try {
-				const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
-				const currentUser = await User.findById(decodedToken.id)
-				return { currentUser }
-			} catch {
-				// Invalid token; treat as unauthenticated.
-			}
+const resolveCurrentUser = async (req) => {
+	const authHeader = req?.headers?.authorization
+	if (authHeader && authHeader.toLowerCase().startsWith('bearer ')) {
+		const token = authHeader.substring(7)
+		try {
+			const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
+			return User.findById(decodedToken.id)
+		} catch {
+			// Invalid token; treat as unauthenticated.
 		}
-		return {}
-	},
+	}
+	return null
+}
+
+const schema = makeExecutableSchema({ typeDefs, resolvers })
+
+const app = express()
+const httpServer = http.createServer(app)
+
+// WebSocket server handles the subscription transport.
+const wsServer = new WebSocketServer({ server: httpServer, path: '/' })
+const serverCleanup = useServer({ schema }, wsServer)
+
+const server = new ApolloServer({
+	schema,
+	plugins: [
+		ApolloServerPluginDrainHttpServer({ httpServer }),
+		{
+			async serverWillStart() {
+				return {
+					async drainServer() {
+						await serverCleanup.dispose()
+					},
+				}
+			},
+		},
+	],
 })
-console.log(`Server ready at ${url}`)
+
+await server.start()
+
+app.use('/', cors(), express.json(), expressMiddleware(server, {
+	context: async ({ req }) => ({
+		currentUser: await resolveCurrentUser(req),
+	}),
+}))
+
+const PORT = process.env.PORT || 4000
+httpServer.listen(PORT, () => console.log(`Server ready at http://localhost:${PORT}`))
