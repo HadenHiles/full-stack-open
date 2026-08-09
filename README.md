@@ -221,7 +221,7 @@ The following parts are **separate courses** from the University of Helsinki and
 **Applications:** `part9/bmi-exercises/`, `part9/flight-diary/`, `part9/course-app/`, `part9/patientor/`
 
 - [x] **[9.1: Body mass index](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
-- [ ] **[9.2: Exercise calculator](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
+- [x] **[9.2: Exercise calculator](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [ ] **[9.3: Command line](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [ ] **[9.4: Express](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [ ] **[9.5: WebBmi](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
