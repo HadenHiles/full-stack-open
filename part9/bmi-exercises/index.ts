@@ -22,5 +22,23 @@ app.get('/bmi', (req, res) => {
 	res.json({ weight, height, bmi: calculateBmi(height, weight) })
 })
 
+// POST /exercises  { daily_exercises: number[], target: number }
+app.post('/exercises', (req, res) => {
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+	const { daily_exercises, target } = req.body as { daily_exercises: unknown; target: unknown }
+
+	if (!daily_exercises || target === undefined) {
+		res.status(400).json({ error: 'parameters missing' })
+		return
+	}
+	if (!Array.isArray(daily_exercises) || typeof target !== 'number' || daily_exercises.some(v => isNaN(Number(v)))) {
+		res.status(400).json({ error: 'malformatted parameters' })
+		return
+	}
+
+	const result = calculateExercises(daily_exercises.map(Number), target)
+	res.json(result)
+})
+
 const PORT = 3003
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
