@@ -6,7 +6,7 @@
   "scripts": {
     "ts-node": "ts-node",
     "bmi": "ts-node bmiCalculator.ts",
-    "exerciseCalculator": "ts-node exerciseCalculator.ts",
+    "calculateExercises": "ts-node exerciseCalculator.ts",
     "start": "node build/index.js",
     "dev": "ts-node-dev --respawn index.ts",
     "build": "tsc",
