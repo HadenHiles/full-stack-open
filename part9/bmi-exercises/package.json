@@ -1,0 +1,28 @@
+{
+  "name": "bmi-exercises",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TypeScript CLI and Express exercises for Full Stack Open Part 9",
+  "scripts": {
+    "ts-node": "ts-node",
+    "bmi": "ts-node bmiCalculator.ts",
+    "exerciseCalculator": "ts-node exerciseCalculator.ts",
+    "start": "node build/index.js",
+    "dev": "ts-node-dev --respawn index.ts",
+    "build": "tsc",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.15.30",
+    "@typescript-eslint/eslint-plugin": "^8.33.0",
+    "@typescript-eslint/parser": "^8.33.0",
+    "eslint": "^9.28.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}
