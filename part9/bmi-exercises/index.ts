@@ -25,18 +25,22 @@ app.get('/bmi', (req, res) => {
 // POST /exercises  { daily_exercises: number[], target: number }
 app.post('/exercises', (req, res) => {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-	const { daily_exercises, target } = req.body as { daily_exercises: unknown; target: unknown }
+	const body = req.body as { daily_exercises?: unknown; target?: unknown }
 
-	if (!daily_exercises || target === undefined) {
+	if (!body.daily_exercises || body.target === undefined) {
 		res.status(400).json({ error: 'parameters missing' })
 		return
 	}
-	if (!Array.isArray(daily_exercises) || typeof target !== 'number' || daily_exercises.some(v => isNaN(Number(v)))) {
+	if (
+		!Array.isArray(body.daily_exercises) ||
+		typeof body.target !== 'number' ||
+		body.daily_exercises.some(v => typeof v !== 'number')
+	) {
 		res.status(400).json({ error: 'malformatted parameters' })
 		return
 	}
 
-	const result = calculateExercises(daily_exercises.map(Number), target)
+	const result = calculateExercises(body.daily_exercises as number[], body.target)
 	res.json(result)
 })
 
