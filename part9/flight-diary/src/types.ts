@@ -21,7 +21,7 @@ export interface DiaryEntry {
 	comment: string
 }
 
-// The public API omits the private comment field.
+// The public API omits the private comment field to protect flight notes.
 export type PublicDiaryEntry = Omit<DiaryEntry, 'comment'>
 
 export interface NewDiaryEntry {
