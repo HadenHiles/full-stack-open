@@ -6,7 +6,7 @@
 
             > **Legend** > > - `[]` not completed > - `[x]` completed > - `*` optional exercise (Parts 1–4, where applicable) > - "Reading only"— no GitHub submission required for this exercise --- ## Progress Summary < !-- progress-summary:start --> | Part | Topic | Completed | Total | Progress | | ---- | ----- | --------: | ----: | -------: | | 0 | Fundamentals of Web apps | 6 | 6 | 100% | | 1 | Introduction to React | 14 | 14 | 100% | | 2 | Communicating with server | 20 | 20 | 100% | | 3 | Programming a server with NodeJS and Express | 22 | 22 | 100% | | 4 | Testing Express servers, user administration | 23 | 23 | 100% | | 5 | Testing React apps | 31 | 31 | 100% | | 6 | Advanced state management | 22 | 22 | 100% | | 7 | React router, custom hooks, styling app with CSS | 20 | 20 | 100% | | 7 | React router, custom hooks, styling app with CSS | 20 | 20 | 100% |
 | 8 | GraphQL | 29 | 29 | 0% |
-| 9 | TypeScript | 7 | 34 | 0% |
+| 9 | TypeScript | 15 | 34 | 0% |
 | **Total** | | **158** | **221** | **71%** | < !-- progress-summary:end --> --- ## Detailed Checklists <details> <summary><strong>Part 0 — Fundamentals of Web apps</strong> — 6/6</summary> **Applications:** `part0/` (diagram files) - [x] **[0.1: HTML](https: //fullstackopen.com/en/part0/fundamentals_of_web_apps)** — Reading only
                 - [x] **[0.2: CSS](https: //fullstackopen.com/en/part0/fundamentals_of_web_apps)** — Reading only
                     - [x] **[0.3: HTML forms](https: //fullstackopen.com/en/part0/fundamentals_of_web_apps)** — Reading only
@@ -235,7 +235,7 @@ The following parts are **separate courses** from the University of Helsinki and
 - [x] **[9.13: Patientor backend, step 5](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [x] **[9.14: Patientor backend, step 6](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [x] **[9.15: Patientor backend, step 7](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
-- [ ] **[9.16: Checkup](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
+- [x] **[9.16: Checkup](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [ ] **[9.17: Course, step 1](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [ ] **[9.18: Course, step 2](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [ ] **[9.19: Flight diaries, step 1](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
