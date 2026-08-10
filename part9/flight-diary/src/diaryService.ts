@@ -1,5 +1,6 @@
 import diaryData from './data/diaryEntries.json'
-import { DiaryEntry, NewDiaryEntry, PublicDiaryEntry, Weather, Visibility } from './types'
+import { DiaryEntry, NewDiaryEntry, PublicDiaryEntry } from './types'
+export { toNewDiaryEntry } from './utils'
 
 // Cast the imported JSON to the correct type at the module boundary.
 const diaryEntries: DiaryEntry[] = diaryData as DiaryEntry[]
@@ -11,45 +12,6 @@ export const getNonSensitiveEntries = (): PublicDiaryEntry[] =>
 
 export const findById = (id: number): DiaryEntry | undefined =>
 	diaryEntries.find(d => d.id === id)
-
-// Validates the raw request body and returns a typed NewDiaryEntry.
-const parseDate = (date: unknown): string => {
-	if (!date || typeof date !== 'string') throw new Error('Incorrect or missing date')
-	return date
-}
-
-// Type guards narrow the union type so TypeScript knows we have valid enum values.
-const isWeather = (value: unknown): value is Weather =>
-	typeof value === 'string' && Object.values(Weather).includes(value as Weather)
-
-const isVisibility = (value: unknown): value is Visibility =>
-	typeof value === 'string' && Object.values(Visibility).includes(value as Visibility)
-
-const parseWeather = (weather: unknown): Weather => {
-	if (!isWeather(weather)) throw new Error('Incorrect or missing weather')
-	return weather
-}
-
-const parseVisibility = (visibility: unknown): Visibility => {
-	if (!isVisibility(visibility)) throw new Error('Incorrect or missing visibility')
-	return visibility
-}
-
-const parseComment = (comment: unknown): string => {
-	if (typeof comment !== 'string') throw new Error('Incorrect or missing comment')
-	return comment
-}
-
-export const toNewDiaryEntry = (body: unknown): NewDiaryEntry => {
-	if (!body || typeof body !== 'object') throw new Error('Incorrect or missing data')
-	const data = body as Record<string, unknown>
-	return {
-		date: parseDate(data.date),
-		weather: parseWeather(data.weather),
-		visibility: parseVisibility(data.visibility),
-		comment: parseComment(data.comment),
-	}
-}
 
 export const addEntry = (entry: NewDiaryEntry): DiaryEntry => {
 	const newEntry = { id: Math.max(...diaryEntries.map(d => d.id)) + 1, ...entry }
