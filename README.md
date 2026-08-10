@@ -228,7 +228,7 @@ The following parts are **separate courses** from the University of Helsinki and
 - [x] **[9.6: Eslint](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [x] **[9.7: WebExercises](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [x] **[9.8: Checkup](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
-- [ ] **[9.9: Patientor backend, step 1](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
+- [x] **[9.9: Patientor backend, step 1](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [ ] **[9.10: Patientor backend, step 2](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [ ] **[9.11: Patientor backend, step 3](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [ ] **[9.12: Patientor backend, step 4](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**

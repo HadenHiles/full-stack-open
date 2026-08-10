@@ -1,0 +1,11 @@
+[
+  { "id": 1, "date": "2017-01-01", "weather": "rainy", "visibility": "poor", "comment": "Pretty scary flight, I do not recommend" },
+  { "id": 2, "date": "2017-04-01", "weather": "sunny", "visibility": "good", "comment": "Nice and easy, mild winds" },
+  { "id": 3, "date": "2017-04-15", "weather": "cloudy", "visibility": "good", "comment": "No complications" },
+  { "id": 4, "date": "2017-05-11", "weather": "cloudy", "visibility": "great", "comment": "Some turbulence" },
+  { "id": 5, "date": "2017-05-16", "weather": "windy", "visibility": "good", "comment": "Good visibility but quite windy" },
+  { "id": 6, "date": "2017-06-11", "weather": "rainy", "visibility": "ok", "comment": "Lots of rain throughout the flight" },
+  { "id": 7, "date": "2017-06-11", "weather": "sunny", "visibility": "great", "comment": "" },
+  { "id": 8, "date": "2017-07-17", "weather": "cloudy", "visibility": "great", "comment": "" },
+  { "id": 9, "date": "2017-09-02", "weather": "sunny", "visibility": "great", "comment": "" }
+]

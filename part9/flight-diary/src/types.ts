@@ -1,0 +1,32 @@
+export enum Weather {
+	Sunny = 'sunny',
+	Rainy = 'rainy',
+	Cloudy = 'cloudy',
+	Stormy = 'stormy',
+	Windy = 'windy',
+}
+
+export enum Visibility {
+	Great = 'great',
+	Good = 'good',
+	Ok = 'ok',
+	Poor = 'poor',
+}
+
+export interface DiaryEntry {
+	id: number
+	date: string
+	weather: Weather
+	visibility: Visibility
+	comment: string
+}
+
+// The public API omits the private comment field.
+export type PublicDiaryEntry = Omit<DiaryEntry, 'comment'>
+
+export interface NewDiaryEntry {
+	date: string
+	weather: Weather
+	visibility: Visibility
+	comment: string
+}
