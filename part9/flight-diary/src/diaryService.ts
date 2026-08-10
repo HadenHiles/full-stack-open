@@ -18,18 +18,21 @@ const parseDate = (date: unknown): string => {
 	return date
 }
 
+// Type guards narrow the union type so TypeScript knows we have valid enum values.
+const isWeather = (value: unknown): value is Weather =>
+	typeof value === 'string' && Object.values(Weather).includes(value as Weather)
+
+const isVisibility = (value: unknown): value is Visibility =>
+	typeof value === 'string' && Object.values(Visibility).includes(value as Visibility)
+
 const parseWeather = (weather: unknown): Weather => {
-	if (!weather || !Object.values(Weather).includes(weather as Weather)) {
-		throw new Error('Incorrect or missing weather')
-	}
-	return weather as Weather
+	if (!isWeather(weather)) throw new Error('Incorrect or missing weather')
+	return weather
 }
 
 const parseVisibility = (visibility: unknown): Visibility => {
-	if (!visibility || !Object.values(Visibility).includes(visibility as Visibility)) {
-		throw new Error('Incorrect or missing visibility')
-	}
-	return visibility as Visibility
+	if (!isVisibility(visibility)) throw new Error('Incorrect or missing visibility')
+	return visibility
 }
 
 const parseComment = (comment: unknown): string => {
