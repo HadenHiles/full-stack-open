@@ -18,6 +18,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
 	try {
+		// toNewDiaryEntry validates and narrows the request body type.
 		const newEntry = diaryService.toNewDiaryEntry(req.body)
 		const savedEntry = diaryService.addEntry(newEntry)
 		res.json(savedEntry)
