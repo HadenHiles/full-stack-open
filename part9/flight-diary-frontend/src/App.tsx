@@ -19,6 +19,7 @@ const App = () => {
 			setEntries(entries.concat(addedEntry))
 			setErrorMessage(null)
 		} catch (error: unknown) {
+			// isAxiosError narrows the type so we can safely access response.data.
 			if (axios.isAxiosError(error) && error.response) {
 				setErrorMessage(String(error.response.data))
 			} else {
