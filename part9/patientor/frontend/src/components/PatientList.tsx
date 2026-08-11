@@ -5,15 +5,17 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
+import Typography from '@mui/material/Typography'
 
 const PatientList = ({ patients }: { patients: Patient[] }) => (
 	<div>
+		<Typography variant="h5" gutterBottom>Patient list</Typography>
 		<Table>
 			<TableHead>
 				<TableRow>
-					<TableCell>Name</TableCell>
-					<TableCell>Gender</TableCell>
-					<TableCell>Occupation</TableCell>
+					<TableCell><strong>Name</strong></TableCell>
+					<TableCell><strong>Gender</strong></TableCell>
+					<TableCell><strong>Occupation</strong></TableCell>
 				</TableRow>
 			</TableHead>
 			<TableBody>
