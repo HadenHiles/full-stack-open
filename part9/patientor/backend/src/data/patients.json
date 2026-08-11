@@ -1,0 +1,86 @@
+[
+  {
+    "id": "d2773336-f723-11e9-8f0b-362b9e155667",
+    "name": "John McClane",
+    "dateOfBirth": "1986-07-09",
+    "ssn": "090786-122X",
+    "gender": "male",
+    "occupation": "New york city cop",
+    "entries": [
+      {
+        "id": "d2773598-f723-11e9-8f0b-362b9e155667",
+        "date": "2015-01-02",
+        "type": "Hospital",
+        "specialist": "MD House",
+        "diagnosisCodes": ["S09.4"],
+        "description": "Healing time 2 weeks",
+        "discharge": { "date": "2015-01-16", "criteria": "Thumb has healed." }
+      }
+    ]
+  },
+  {
+    "id": "d2773598-f723-11e9-8f0b-362b9e155668",
+    "name": "Martin Riggs",
+    "dateOfBirth": "1979-01-30",
+    "ssn": "300179-777A",
+    "gender": "male",
+    "occupation": "Cop",
+    "entries": [
+      {
+        "id": "fcd59fa6-c4b4-4fec-ac4d-df4fe1f85f62",
+        "date": "2019-08-05",
+        "type": "OccupationalHealthcare",
+        "specialist": "MD House",
+        "employerName": "HyPD",
+        "diagnosisCodes": ["Z57.1", "Z74.3", "M51.2"],
+        "description": "Patient mistakenly found himself in a nuclear plant waste site when waste was emptied as a part of their loss process.",
+        "sickLeave": { "startDate": "2019-08-05", "endDate": "2019-08-28" }
+      }
+    ]
+  },
+  {
+    "id": "d27736ec-f723-11e9-8f0b-362b9e155667",
+    "name": "Hans Gruber",
+    "dateOfBirth": "1970-04-11",
+    "ssn": "110470-2639",
+    "gender": "male",
+    "occupation": "Technician",
+    "entries": []
+  },
+  {
+    "id": "d2773822-f723-11e9-8f0b-362b9e155667",
+    "name": "Dana Scully",
+    "dateOfBirth": "1974-01-22",
+    "ssn": "220174-321V",
+    "gender": "female",
+    "occupation": "Doctor",
+    "entries": [
+      {
+        "id": "b4f4eca1-2aa7-4b13-9a18-4a5535c3c8da",
+        "date": "2019-10-20",
+        "type": "HealthCheck",
+        "specialist": "MD House",
+        "description": "Yearly control",
+        "healthCheckRating": 0
+      }
+    ]
+  },
+  {
+    "id": "d2773c6e-f723-11e9-8f0b-362b9e155667",
+    "name": "Matti Luukkainen",
+    "dateOfBirth": "1971-04-09",
+    "ssn": "090471-8890",
+    "gender": "other",
+    "occupation": "Fullstack developer",
+    "entries": [
+      {
+        "id": "22e84604-7db2-4e60-b6b1-b78d49c84fdc",
+        "date": "2019-04-15",
+        "type": "HealthCheck",
+        "specialist": "MD House",
+        "description": "Yearly control",
+        "healthCheckRating": 2
+      }
+    ]
+  }
+]

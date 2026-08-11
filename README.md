@@ -242,7 +242,7 @@ The following parts are **separate courses** from the University of Helsinki and
 - [x] **[9.20: Flight diaries, step 2](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [x] **[9.21: Flight diaries, step 3](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [x] **[9.22: Flight diaries, step 4](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
-- [ ] **[9.23: Patientor, step 1](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
+- [x] **[9.23: Patientor, step 1](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [ ] **[9.24: Patientor, step 2](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [ ] **[9.25: Patientor, step 3](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [ ] **[9.26: Patientor, step 4](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
