@@ -4,6 +4,11 @@ interface PartProps {
 	part: CoursePart
 }
 
+// Helper so TypeScript catches unhandled kinds at compile time.
+const assertNever = (value: never): never => {
+	throw new Error(`Unhandled discriminated union member: ${JSON.stringify(value)}`)
+}
+
 // Exhaustive switch ensures TypeScript warns if a new CoursePart kind is added but not handled.
 const Part = ({ part }: PartProps) => {
 	switch (part.kind) {
@@ -37,11 +42,8 @@ const Part = ({ part }: PartProps) => {
 					<br />required skills: {part.requirements.join(', ')}
 				</div>
 			)
-		default: {
-			// This never case ensures exhaustive handling is enforced at compile time.
-			const _exhaustiveCheck: never = part
-			return _exhaustiveCheck
-		}
+		default:
+			return assertNever(part)
 	}
 }
 
