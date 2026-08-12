@@ -29,6 +29,7 @@ router.post('/', (req, res) => {
 
 router.post('/:id/entries', (req, res) => {
 	try {
+		// toNewEntry validates the body and narrows it to the correct Entry subtype.
 		const newEntry = toNewEntry(req.body)
 		const savedEntry = patientService.addEntry(req.params.id, newEntry)
 		res.json(savedEntry)
