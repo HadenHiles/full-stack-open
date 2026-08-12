@@ -52,6 +52,7 @@ const AddEntryForm = ({ patientId: _patientId, diagnoses, onAdd }: AddEntryFormP
 			onAdd(newEntry)
 			setErrorMessage(null)
 		} catch (error: unknown) {
+			// isAxiosError narrows the union so we can safely access the response body.
 			if (axios.isAxiosError(error) && error.response) {
 				setErrorMessage(String(error.response.data))
 			}
