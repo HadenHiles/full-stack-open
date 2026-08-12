@@ -41,6 +41,7 @@ const PatientView = ({ diagnoses }: { diagnoses: Diagnosis[] }) => {
 	return (
 		<div>
 			<h2>{patient.name} {genderIcon(patient.gender)}</h2>
+			<div>date of birth: {patient.dateOfBirth}</div>
 			<div>ssn: {patient.ssn}</div>
 			<div>occupation: {patient.occupation}</div>
 			<h3>entries</h3>
