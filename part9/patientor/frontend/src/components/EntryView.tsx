@@ -12,9 +12,16 @@ const ratingColor: Record<HealthCheckRating, string> = {
 	[HealthCheckRating.CriticalRisk]: 'red',
 }
 
+const cardStyle: React.CSSProperties = {
+	border: '1px solid #ccc',
+	borderRadius: '8px',
+	padding: '0.75rem',
+	marginBottom: '0.5rem',
+}
+
 const HealthCheckEntryView = ({ entry }: { entry: HealthCheckEntry }) => (
-	<div>
-		{entry.date} <MedicalServicesIcon />
+	<div style={cardStyle}>
+		{entry.date} <MedicalServicesIcon fontSize="small" />
 		<div><em>{entry.description}</em></div>
 		<FavoriteIcon style={{ color: ratingColor[entry.healthCheckRating] }} />
 		<div>diagnosed by {entry.specialist}</div>
@@ -22,8 +29,8 @@ const HealthCheckEntryView = ({ entry }: { entry: HealthCheckEntry }) => (
 )
 
 const OccupationalEntryView = ({ entry }: { entry: OccupationalHealthcareEntry }) => (
-	<div>
-		{entry.date} <WorkIcon /> <em>{entry.employerName}</em>
+	<div style={cardStyle}>
+		{entry.date} <WorkIcon fontSize="small" /> <em>{entry.employerName}</em>
 		<div><em>{entry.description}</em></div>
 		{entry.sickLeave && <div>sick leave: {entry.sickLeave.startDate} - {entry.sickLeave.endDate}</div>}
 		<div>diagnosed by {entry.specialist}</div>
@@ -31,8 +38,8 @@ const OccupationalEntryView = ({ entry }: { entry: OccupationalHealthcareEntry }
 )
 
 const HospitalEntryView = ({ entry }: { entry: HospitalEntry }) => (
-	<div>
-		{entry.date} <LocalHospitalIcon />
+	<div style={cardStyle}>
+		{entry.date} <LocalHospitalIcon fontSize="small" />
 		<div><em>{entry.description}</em></div>
 		<div>discharge: {entry.discharge.date} - {entry.discharge.criteria}</div>
 		<div>diagnosed by {entry.specialist}</div>
