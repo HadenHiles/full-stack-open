@@ -47,15 +47,20 @@ export const toNewEntry = (body: unknown): NewEntry => {
 		case 'HealthCheck':
 			if (!isHealthCheckRating(data.healthCheckRating)) throw new Error('Invalid healthCheckRating')
 			return { ...base, type: 'HealthCheck', healthCheckRating: data.healthCheckRating }
-		case 'OccupationalHealthcare':
+		case 'OccupationalHealthcare': {
+			const sickLeave = data.sickLeave && typeof data.sickLeave === 'object'
+				? {
+						startDate: parseString((data.sickLeave as Record<string, unknown>).startDate, 'sickLeave.startDate'),
+						endDate: parseString((data.sickLeave as Record<string, unknown>).endDate, 'sickLeave.endDate'),
+					}
+				: undefined
 			return {
 				...base,
 				type: 'OccupationalHealthcare',
 				employerName: parseString(data.employerName, 'employerName'),
-				sickLeave: data.sickLeave && typeof data.sickLeave === 'object'
-					? data.sickLeave as Entry extends { sickLeave: infer S } ? S : never
-					: undefined,
+				sickLeave,
 			}
+		}
 		case 'Hospital':
 			if (!data.discharge || typeof data.discharge !== 'object') throw new Error('Invalid discharge')
 			const discharge = data.discharge as Record<string, unknown>
