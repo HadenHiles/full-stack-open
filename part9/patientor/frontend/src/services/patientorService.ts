@@ -9,6 +9,7 @@ export const getAllPatients = async (): Promise<Patient[]> => {
 }
 
 export const getPatient = async (id: string): Promise<Patient> => {
+	// Fetches the full record including entries (not included in the patient list response).
 	const response = await axios.get<Patient>(`${baseUrl}/patients/${id}`)
 	return response.data
 }
