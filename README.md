@@ -251,7 +251,7 @@ The following parts are **separate courses** from the University of Helsinki and
 - [x] **[9.29: Patientor, step 7](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [x] **[9.30: Patientor, step 8](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [x] **[9.31: Patientor, step 9](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
-- [ ] **[9.32: Patientor, step 10](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
+- [x] **[9.32: Patientor, step 10](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [ ] **[9.33: Patientor final check](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 - [ ] **[9.34: Your GitHub repository](https://courses.mooc.fi/org/uh-cs/courses/full-stack-open-typescript)**
 

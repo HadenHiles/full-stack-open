@@ -61,7 +61,8 @@ export const toNewEntry = (body: unknown): NewEntry => {
 				sickLeave,
 			}
 		}
-		case 'Hospital':
+		case 'Hospital': {
+			// Wrap in block to avoid let/const scoping issues across case branches.
 			if (!data.discharge || typeof data.discharge !== 'object') throw new Error('Invalid discharge')
 			const discharge = data.discharge as Record<string, unknown>
 			return {
@@ -72,6 +73,7 @@ export const toNewEntry = (body: unknown): NewEntry => {
 					criteria: parseString(discharge.criteria, 'discharge.criteria'),
 				},
 			}
+		}
 		default:
 			throw new Error(`Unknown entry type: ${String(data.type)}`)
 	}
